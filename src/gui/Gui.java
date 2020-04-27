@@ -12,19 +12,20 @@ public class Gui extends JFrame{
     }
 
     /** 右侧图标
-     **
-     **/
+     *
+     */
     private Container container;
-    private  JButton Jb1 = new JButton(new ImageIcon("src/images/1.png"));
-    private  JButton Jb2 = new JButton(new ImageIcon("src/images/2.png"));
-    private  JButton Jb3 = new JButton(new ImageIcon("src/images/3.png"));
-    private  JButton Jb4 = new JButton(new ImageIcon("src/images/4.png"));
-    private  JButton Jb5 = new JButton(new ImageIcon("src/images/5.png"));
-    private  JButton Jb6 = new JButton(new ImageIcon("src/images/6.png"));
-    private  JButton Jb7 = new JButton(new ImageIcon("src/images/7.png"));
-    /**
-     ** 菜单
-     **/
+    private  JButton jb1 = new JButton(new ImageIcon("src/images/1.png"));
+    private  JButton jb2 = new JButton(new ImageIcon("src/images/2.png"));
+    private  JButton jb3 = new JButton(new ImageIcon("src/images/3.png"));
+    private  JButton jb4 = new JButton(new ImageIcon("src/images/4.png"));
+    private  JButton jb5 = new JButton(new ImageIcon("src/images/5.png"));
+    private  JButton jb6 = new JButton(new ImageIcon("src/images/6.png"));
+    private  JButton jb7 = new JButton(new ImageIcon("src/images/7.png"));
+
+    /** 菜单
+     *
+     */
     JMenuBar jmb;
     JMenu menu1, menu2, menu3, menu4, menu5;
     JMenuItem item2, item3, item4, item5, item6, item7;
@@ -32,10 +33,15 @@ public class Gui extends JFrame{
     /** 二级菜单
      **
      **/
-    JMenu Xinjiang;
+    JMenu xinjian;
     JMenuItem file, project;
     JTextArea jta;
     Color ButtonColor= new Color(255, 255, 255);
+
+    /** 实例化ButtonListener，实现接口
+     *
+     */
+    ButtonListener btl = new ButtonListener();
     public Gui(){
         setLayout(new BorderLayout(5,10));
         //绘图按钮面板
@@ -43,26 +49,30 @@ public class Gui extends JFrame{
         //画板
         JPanel p2 = new JPanel();
         p1.setLayout(new GridLayout(7,1));
+        p1.setLayout(new GridLayout(7,1));
         this.add(p1,BorderLayout.EAST);
         this.add(p2,BorderLayout.CENTER);
         container = getContentPane();
-        p1.add(Jb1) ;
-        p1.add(Jb2) ;
-        p1.add(Jb3) ;
-        p1.add(Jb4) ;
-        p1.add(Jb5) ;
-        p1.add(Jb6) ;
-        p1.add(Jb7) ;
-        Jb1.setBackground(ButtonColor);
-        Jb2.setBackground(ButtonColor);
-        Jb3.setBackground(ButtonColor);
-        Jb4.setBackground(ButtonColor);
-        Jb5.setBackground(ButtonColor);
-        Jb6.setBackground(ButtonColor);
-        Jb7.setBackground(ButtonColor);
-        p2.setBackground(Color.WHITE);
-        jmb = new JMenuBar();
 
+        p1.add(jb1) ;
+        p1.add(jb2) ;
+        p1.add(jb3) ;
+        p1.add(jb4) ;
+        p1.add(jb5) ;
+        p1.add(jb6) ;
+        p1.add(jb7) ;
+
+        //设置背景颜色
+        jb1.setBackground(ButtonColor);
+        jb2.setBackground(ButtonColor);
+        jb3.setBackground(ButtonColor);
+        jb4.setBackground(ButtonColor);
+        jb5.setBackground(ButtonColor);
+        jb6.setBackground(ButtonColor);
+        jb7.setBackground(ButtonColor);
+        p2.setBackground(Color.WHITE);
+
+        jmb = new JMenuBar();
         menu1 = new JMenu("文件(F)");
         // 设置助记符
         menu1.setMnemonic('F');
@@ -76,7 +86,7 @@ public class Gui extends JFrame{
         menu5.setMnemonic('H');
 
         // item1=new JMenuItem(“新建”)
-        Xinjiang = new JMenu("新建");
+        xinjian = new JMenu("新建");
         file = new JMenuItem("文件");
         project = new JMenuItem("工程");
 
@@ -92,10 +102,10 @@ public class Gui extends JFrame{
         item7 = new JMenuItem("退出");
         jta = new JTextArea();
         // 将菜单添加到菜单栏上
-        Xinjiang.add(file);
-        Xinjiang.add(project);
+        xinjian.add(file);
+        xinjian.add(project);
 
-        menu1.add(Xinjiang);
+        menu1.add(xinjian);
         menu1.add(item2);
         menu1.add(item3);
         menu1.add(item4);
@@ -119,5 +129,14 @@ public class Gui extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocation(200, 200);
         this.setVisible(true);
+
+        //加入按钮的监听
+        jb1.addActionListener(btl);
+        jb2.addActionListener(btl);
+        jb3.addActionListener(btl);
+        jb4.addActionListener(btl);
+        jb5.addActionListener(btl);
+        jb6.addActionListener(btl);
+        jb7.addActionListener(btl);
     }
 }
