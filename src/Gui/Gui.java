@@ -11,14 +11,20 @@ public class Gui extends JFrame{
         gui1.setDefaultCloseOperation(3);
     }
 
+    /** 右侧图标
+     **
+     **/
     private Container container;
-    private  JButton jb1 = new JButton(new ImageIcon("src/images/1.png"));
-    private  JButton jb2 = new JButton(new ImageIcon("src/images/2.png"));
-    private  JButton jb3 = new JButton(new ImageIcon("src/images/3.png"));
-    private  JButton jb4 = new JButton(new ImageIcon("src/images/4.png"));
-    private  JButton jb5 = new JButton(new ImageIcon("src/images/5.png"));
-    private  JButton jb6 = new JButton(new ImageIcon("src/images/6.png"));
-    private  JButton jb7 = new JButton(new ImageIcon("src/images/7.png"));
+    private  JButton Jb1 = new JButton(new ImageIcon("src/images/1.png"));
+    private  JButton Jb2 = new JButton(new ImageIcon("src/images/2.png"));
+    private  JButton Jb3 = new JButton(new ImageIcon("src/images/3.png"));
+    private  JButton Jb4 = new JButton(new ImageIcon("src/images/4.png"));
+    private  JButton Jb5 = new JButton(new ImageIcon("src/images/5.png"));
+    private  JButton Jb6 = new JButton(new ImageIcon("src/images/6.png"));
+    private  JButton Jb7 = new JButton(new ImageIcon("src/images/7.png"));
+    /**
+     ** 菜单
+     **/
     JMenuBar jmb;
     JMenu menu1, menu2, menu3, menu4, menu5;
     JMenuItem item2, item3, item4, item5, item6, item7;
@@ -26,10 +32,10 @@ public class Gui extends JFrame{
     /** 二级菜单
      **
      **/
-    JMenu xinjian;
+    JMenu Xinjiang;
     JMenuItem file, project;
     JTextArea jta;
-    Color buttoncolor= new Color(242,242,242);
+    Color ButtonColor= new Color(60, 63, 65);
     public Gui(){
         setLayout(new BorderLayout(5,10));
         //绘图按钮面板
@@ -40,20 +46,20 @@ public class Gui extends JFrame{
         this.add(p1,BorderLayout.EAST);
         this.add(p2,BorderLayout.CENTER);
         container = getContentPane();
-        p1.add(jb1) ;
-        p1.add(jb2) ;
-        p1.add(jb3) ;
-        p1.add(jb4) ;
-        p1.add(jb5) ;
-        p1.add(jb6) ;
-        p1.add(jb7) ;
-        jb1.setBackground(buttoncolor);
-        jb2.setBackground(buttoncolor);
-        jb3.setBackground(buttoncolor);
-        jb4.setBackground(buttoncolor);
-        jb5.setBackground(buttoncolor);
-        jb6.setBackground(buttoncolor);
-        jb7.setBackground(buttoncolor);
+        p1.add(Jb1) ;
+        p1.add(Jb2) ;
+        p1.add(Jb3) ;
+        p1.add(Jb4) ;
+        p1.add(Jb5) ;
+        p1.add(Jb6) ;
+        p1.add(Jb7) ;
+        Jb1.setBackground(ButtonColor);
+        Jb2.setBackground(ButtonColor);
+        Jb3.setBackground(ButtonColor);
+        Jb4.setBackground(ButtonColor);
+        Jb5.setBackground(ButtonColor);
+        Jb6.setBackground(ButtonColor);
+        Jb7.setBackground(ButtonColor);
         p2.setBackground(Color.WHITE);
         jmb = new JMenuBar();
 
@@ -70,7 +76,7 @@ public class Gui extends JFrame{
         menu5.setMnemonic('H');
 
         // item1=new JMenuItem(“新建”)
-        xinjian = new JMenu("新建");
+        Xinjiang = new JMenu("新建");
         file = new JMenuItem("文件");
         project = new JMenuItem("工程");
 
@@ -86,10 +92,10 @@ public class Gui extends JFrame{
         item7 = new JMenuItem("退出");
         jta = new JTextArea();
         // 将菜单添加到菜单栏上
-        xinjian.add(file);
-        xinjian.add(project);
+        Xinjiang.add(file);
+        Xinjiang.add(project);
 
-        menu1.add(xinjian);
+        menu1.add(Xinjiang);
         menu1.add(item2);
         menu1.add(item3);
         menu1.add(item4);
