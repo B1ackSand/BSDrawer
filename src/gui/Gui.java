@@ -1,9 +1,15 @@
 package gui;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-public class Gui extends JFrame{
 
+import static common.Path.*;
+
+/**
+ * @author Gillo
+ */
+public class Gui extends JFrame {
     public static void main(String[] args) {
 
         Gui gui1 = new Gui();
@@ -11,56 +17,58 @@ public class Gui extends JFrame{
         gui1.setDefaultCloseOperation(3);
     }
 
-    /** 右侧图标
-     *
+
+    /**
+     * 右侧图标
      */
     private Container container;
-    private  JButton jb1 = new JButton(new ImageIcon("src/images/1.png"));
-    private  JButton jb2 = new JButton(new ImageIcon("src/images/2.png"));
-    private  JButton jb3 = new JButton(new ImageIcon("src/images/3.png"));
-    private  JButton jb4 = new JButton(new ImageIcon("src/images/4.png"));
-    private  JButton jb5 = new JButton(new ImageIcon("src/images/5.png"));
-    private  JButton jb6 = new JButton(new ImageIcon("src/images/6.png"));
-    private  JButton jb7 = new JButton(new ImageIcon("src/images/7.png"));
+    private JButton jb1 = new JButton(new ImageIcon(ROUNDRECT));
+    private JButton jb2 = new JButton(new ImageIcon(NORMALRECT));
+    private JButton jb3 = new JButton(new ImageIcon(DIAMOND));
+    private JButton jb4 = new JButton(new ImageIcon(PARALLELOGRAM));
+    private JButton jb5 = new JButton(new ImageIcon(ARROWLINE));
+    private JButton jb6 = new JButton(new ImageIcon(CONNECTOR));
+    private JButton jb7 = new JButton(new ImageIcon(CURVERECT));
 
-    /** 菜单
-     *
+    /**
+     * 菜单
      */
     JMenuBar jmb;
     JMenu menu1, menu2, menu3, menu4, menu5;
     JMenuItem item2, item3, item4, item5, item6, item7;
 
-    /** 二级菜单
-     **
+    /**
+     * 二级菜单
+     * *
      **/
     JMenu xinjian;
     JMenuItem file, project;
     JTextArea jta;
-    Color ButtonColor= new Color(255, 255, 255);
+    Color ButtonColor = new Color(255, 255, 255);
 
-    /** 实例化ButtonListener，实现接口
-     *
+    /**
+     * 实例化ButtonListener，实现接口
      */
-    ButtonListener btl = new ButtonListener();
-    public Gui(){
-        setLayout(new BorderLayout(5,10));
+
+    public Gui() {
+        setLayout(new BorderLayout(5, 10));
         //绘图按钮面板
         JPanel p1 = new JPanel();
         //画板
         JPanel p2 = new JPanel();
-        p1.setLayout(new GridLayout(7,1));
-        p1.setLayout(new GridLayout(7,1));
-        this.add(p1,BorderLayout.EAST);
-        this.add(p2,BorderLayout.CENTER);
+        p1.setLayout(new GridLayout(7, 1));
+        p1.setLayout(new GridLayout(7, 1));
+        this.add(p1, BorderLayout.EAST);
+        this.add(p2, BorderLayout.CENTER);
         container = getContentPane();
 
-        p1.add(jb1) ;
-        p1.add(jb2) ;
-        p1.add(jb3) ;
-        p1.add(jb4) ;
-        p1.add(jb5) ;
-        p1.add(jb6) ;
-        p1.add(jb7) ;
+        p1.add(jb1);
+        p1.add(jb2);
+        p1.add(jb3);
+        p1.add(jb4);
+        p1.add(jb5);
+        p1.add(jb6);
+        p1.add(jb7);
 
         //设置背景颜色
         jb1.setBackground(ButtonColor);
@@ -125,18 +133,61 @@ public class Gui extends JFrame{
         // 将菜单添加到窗体上
         this.setJMenuBar(jmb);
         this.setTitle("流程图绘制程序");
+        //画布大小
         this.setSize(1080, 660);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocation(200, 200);
         this.setVisible(true);
 
-        //加入按钮的监听
-        jb1.addActionListener(btl);
-        jb2.addActionListener(btl);
-        jb3.addActionListener(btl);
-        jb4.addActionListener(btl);
-        jb5.addActionListener(btl);
-        jb6.addActionListener(btl);
-        jb7.addActionListener(btl);
+        //按钮监听
+        jb1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // 获取到的事件源就是按钮本身
+                System.out.println("按钮被点击");
+            }
+        });
+        jb2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // 获取到的事件源就是按钮本身
+                System.out.println("按钮被点击");
+            }
+        });
+        jb3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // 获取到的事件源就是按钮本身
+                System.out.println("按钮被点击");
+            }
+        });
+        jb4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // 获取到的事件源就是按钮本身
+                System.out.println("按钮被点击");
+            }
+        });
+        jb5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // 获取到的事件源就是按钮本身
+                System.out.println("按钮被点击");
+            }
+        });
+        jb6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // 获取到的事件源就是按钮本身
+                System.out.println("按钮被点击");
+            }
+        });
+        jb7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // 获取到的事件源就是按钮本身
+                System.out.println("按钮被点击");
+            }
+        });
     }
 }
