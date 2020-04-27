@@ -1,4 +1,4 @@
-package Gui;
+package gui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -35,7 +35,7 @@ public class Gui extends JFrame{
     JMenu Xinjiang;
     JMenuItem file, project;
     JTextArea jta;
-    Color ButtonColor= new Color(60, 63, 65);
+    Color ButtonColor= new Color(255, 255, 255);
     public Gui(){
         setLayout(new BorderLayout(5,10));
         //绘图按钮面板
@@ -115,7 +115,7 @@ public class Gui extends JFrame{
         // 将菜单添加到窗体上
         this.setJMenuBar(jmb);
         this.setTitle("流程图绘制程序");
-        this.setSize(1078, 660);
+        this.setSize(1080, 660);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocation(200, 200);
         this.setVisible(true);
