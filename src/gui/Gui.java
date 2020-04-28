@@ -6,6 +6,7 @@ import shape.Symbol;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 import static common.Path.*;
 
@@ -33,12 +34,14 @@ public class Gui extends JFrame {
     private JButton jb6 = new JButton(new ImageIcon(CONNECTOR));
     private JButton jb7 = new JButton(new ImageIcon(CURVERECT));
 
+    private ArrayList<Symbol> flowchart = new ArrayList<>();
+
     /**
      * 菜单
      */
     JMenuBar jmb;
-    JMenu menu1, menu2, menu3, menu4, menu5;
-    JMenuItem item2, item3, item4, item5, item6, item7;
+    JMenu menu1, menu2, menu3;
+    JMenuItem item2, item3, item4, item5;
 
     /**
      * 二级菜单
@@ -77,7 +80,7 @@ public class Gui extends JFrame {
         jb5.setBackground(ButtonColor);
         jb6.setBackground(ButtonColor);
         jb7.setBackground(ButtonColor);
-        p2.setBackground(Color.WHITE);
+        p2.setBackground(Color.GRAY);
 
         jmb = new JMenuBar();
         menu1 = new JMenu("文件(F)");
@@ -85,12 +88,8 @@ public class Gui extends JFrame {
         menu1.setMnemonic('F');
         menu2 = new JMenu("编辑(E)");
         menu2.setMnemonic('E');
-        menu3 = new JMenu("格式(O)");
-        menu3.setMnemonic('O');
-        menu4 = new JMenu("查看(V)");
-        menu4.setMnemonic('V');
-        menu5 = new JMenu("帮助(H)");
-        menu5.setMnemonic('H');
+        menu3 = new JMenu("帮助(H)");
+        menu3.setMnemonic('H');
 
         // item1=new JMenuItem(“新建”)
         xinjian = new JMenu("新建");
@@ -104,9 +103,7 @@ public class Gui extends JFrame {
         item3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
                 InputEvent.ALT_MASK));
         item4 = new JMenuItem("另存为");
-        item5 = new JMenuItem("页面设置");
-        item6 = new JMenuItem("打印");
-        item7 = new JMenuItem("退出");
+        item5 = new JMenuItem("退出");
         jta = new JTextArea();
         // 将菜单添加到菜单栏上
         xinjian.add(file);
@@ -118,16 +115,11 @@ public class Gui extends JFrame {
         menu1.add(item4);
         menu1.addSeparator();// 添加分割线
         menu1.add(item5);
-        menu1.add(item6);
-        menu1.addSeparator();
-        menu1.add(item7);
 
         // 将菜单添加到菜单条上
         jmb.add(menu1);
         jmb.add(menu2);
         jmb.add(menu3);
-        jmb.add(menu4);
-        jmb.add(menu5);
 
         // 将菜单添加到窗体上
         this.setJMenuBar(jmb);

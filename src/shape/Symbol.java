@@ -1,13 +1,11 @@
 package shape;
 
-import javafx.scene.canvas.GraphicsContext;
-
 import java.awt.*;
 
 /**
  * @author BlackSand
  */
-public class Symbol extends AbstractSymbol{
+public class Symbol{
     private int shapeType;
     private int x;
     private int y;
@@ -33,12 +31,11 @@ public class Symbol extends AbstractSymbol{
     }
 
 
-    @Override
     public boolean containsPoint(double x, double y) {
         return x > this.x && x < this.x + this.width && y > this.y && y < this.y + this.height;
     }
 
-    @Override
+
     public void draw(Graphics g) {
         switch (shapeType) {
             // 处理框
@@ -71,11 +68,11 @@ public class Symbol extends AbstractSymbol{
     /**
      *  setter and getter
      */
-    @Override
+
     public boolean isSelected() {
         return isSelected;
     }
-    @Override
+
     public void setSelected(boolean selected) {
         isSelected = selected;
     }
