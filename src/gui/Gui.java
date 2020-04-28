@@ -144,6 +144,7 @@ public class Gui extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // 获取到的事件源就是按钮本身
+
                 System.out.println("按钮被点击");
             }
         });
