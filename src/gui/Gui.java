@@ -1,5 +1,7 @@
 package gui;
 
+import common.ShapeType;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -45,10 +47,6 @@ public class Gui extends JFrame {
     JMenuItem file, project;
     JTextArea jta;
     Color ButtonColor = new Color(255, 255, 255);
-
-    /**
-     * 实例化ButtonListener，实现接口
-     */
 
     public Gui() {
         setLayout(new BorderLayout(5, 10));
@@ -144,7 +142,9 @@ public class Gui extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // 获取到的事件源就是按钮本身
-
+                int x = (int) (Math.random() * p2.getWidth() / 2);
+                int y = (int) (Math.random() * p2.getHeight() / 2);
+                Shape shape = (Shape) new shape.Shape(ShapeType.ROUNDRECT, x, y, 100, 40, "Process\nTest");
                 System.out.println("按钮被点击");
             }
         });

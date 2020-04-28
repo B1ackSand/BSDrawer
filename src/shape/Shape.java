@@ -1,19 +1,62 @@
 package shape;
 
-public class Shape {
-    /** shape有两点坐标和名称
-     *
-     **/
+import common.ShapeType;
 
-    private int x1,x2,y1,y2;
-    private String name;
-    public Shape(int x1,int y1,int x2,int y2,String name){
-        this.x1 = x1;
-        this.x2 = x2;
-        this.y1 = y1;
-        this.y2 = y2;
-        this.name = name;
+
+import java.awt.*;
+
+public class Shape {
+    private int shapeType;
+    private int x;
+    private int y;
+    private int width;
+    private int height;
+    private String text;
+
+    /**
+     * shape有两点坐标和名称
+     * 存储开始拖动时，符号的x,y与鼠标位置的距离
+     **/
+    private boolean isSelected = false;
+    private double dxToPointer, dyToPointer;
+
+
+    public Shape(int shapeType, int x, int y, int width, int height, String text) {
+        this.shapeType = shapeType;
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.text = text;
     }
 
+    public void draw(Graphics g) {
 
+
+        switch (shapeType) {
+            // 处理框
+            case ShapeType.ROUNDRECT:
+                g.fillRoundRect(x, y, width, height, height / 2, height / 2);
+                g.drawRoundRect(x, y, width, height, height / 2, height / 2);
+                g.drawString(text, x + width / 2, y + height / 2);
+                break;
+            // 开始结束框
+            case ShapeType.NORMALRECT:
+                g.fillRect(x, y, width, height);
+                g.drawRect(x, y, width, height);
+                g.drawString(text, x + width / 2, y + height / 2);
+                break;
+            // 条件框
+            case ShapeType.DIAMOND:
+                int[] xPoints = {x + width / 2, x + width, x + width / 2, x,};
+                int[] yPoints = {y, y + height / 2, y + height, y + height / 2,};
+                g.fillPolygon(xPoints, yPoints, 4);
+                g.drawPolygon(xPoints, yPoints, 4);
+                g.drawString(text, x + width / 2, y + height / 2);
+                break;
+            default:
+                ;
+        }
+
+    }
 }
