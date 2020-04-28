@@ -1,5 +1,7 @@
 package shape;
 
+import javafx.scene.canvas.GraphicsContext;
+
 import java.awt.*;
 
 /**
