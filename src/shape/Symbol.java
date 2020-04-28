@@ -1,11 +1,11 @@
 package shape;
 
-import common.ShapeType;
+import common.SymbolType;
 
 
 import java.awt.*;
 
-public class Shape {
+public class Symbol {
     private int shapeType;
     private int x;
     private int y;
@@ -21,7 +21,7 @@ public class Shape {
     private double dxToPointer, dyToPointer;
 
 
-    public Shape(int shapeType, int x, int y, int width, int height, String text) {
+    public Symbol(int shapeType, int x, int y, int width, int height, String text) {
         this.shapeType = shapeType;
         this.x = x;
         this.y = y;
@@ -35,19 +35,19 @@ public class Shape {
 
         switch (shapeType) {
             // 处理框
-            case ShapeType.ROUNDRECT:
+            case SymbolType.ROUNDRECT:
                 g.fillRoundRect(x, y, width, height, height / 2, height / 2);
                 g.drawRoundRect(x, y, width, height, height / 2, height / 2);
                 g.drawString(text, x + width / 2, y + height / 2);
                 break;
             // 开始结束框
-            case ShapeType.NORMALRECT:
+            case SymbolType.NORMALRECT:
                 g.fillRect(x, y, width, height);
                 g.drawRect(x, y, width, height);
                 g.drawString(text, x + width / 2, y + height / 2);
                 break;
             // 条件框
-            case ShapeType.DIAMOND:
+            case SymbolType.DIAMOND:
                 int[] xPoints = {x + width / 2, x + width, x + width / 2, x,};
                 int[] yPoints = {y, y + height / 2, y + height, y + height / 2,};
                 g.fillPolygon(xPoints, yPoints, 4);

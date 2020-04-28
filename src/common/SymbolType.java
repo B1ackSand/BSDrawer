@@ -1,6 +1,6 @@
 package common;
 
-public interface ShapeType {
+public interface SymbolType {
     /**
      * 圆角矩形
      */
