@@ -1,4 +1,4 @@
-package common;
+package shape;
 
 public interface SymbolType {
     /**

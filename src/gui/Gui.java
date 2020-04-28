@@ -1,6 +1,6 @@
 package gui;
 
-import common.SymbolType;
+import shape.SymbolType;
 import shape.Symbol;
 
 import javax.swing.*;
@@ -145,7 +145,7 @@ public class Gui extends JFrame {
                 // 获取到的事件源就是按钮本身
                 int x = (int) (Math.random() * p2.getWidth() / 2);
                 int y = (int) (Math.random() * p2.getHeight() / 2);
-                Shape shape = (Shape) new Symbol(SymbolType.ROUNDRECT, x, y, 100, 40, "Process\nTest");
+                Symbol symbol = new Symbol(SymbolType.ROUNDRECT, x, y, 100, 40, "Process\nTest");
                 System.out.println("按钮被点击");
             }
         });

@@ -1,11 +1,11 @@
 package shape;
 
-import common.SymbolType;
-
-
 import java.awt.*;
 
-public class Symbol {
+/**
+ * @author BlackSand
+ */
+public class Symbol extends AbstractSymbol{
     private int shapeType;
     private int x;
     private int y;
@@ -30,9 +30,14 @@ public class Symbol {
         this.text = text;
     }
 
+
+    @Override
+    public boolean containsPoint(double x, double y) {
+        return x > this.x && x < this.x + this.width && y > this.y && y < this.y + this.height;
+    }
+
+    @Override
     public void draw(Graphics g) {
-
-
         switch (shapeType) {
             // 处理框
             case SymbolType.ROUNDRECT:
@@ -58,5 +63,82 @@ public class Symbol {
                 ;
         }
 
+    }
+
+
+    /**
+     *  setter and getter
+     */
+    @Override
+    public boolean isSelected() {
+        return isSelected;
+    }
+    @Override
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
+    public void setShapeType(int shapeType) {
+        this.shapeType = shapeType;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setDxToPointer(double dxToPointer) {
+        this.dxToPointer = dxToPointer;
+    }
+
+    public void setDyToPointer(double dyToPointer) {
+        this.dyToPointer = dyToPointer;
+    }
+
+    public int getShapeType() {
+        return shapeType;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public double getDxToPointer() {
+        return dxToPointer;
+    }
+
+    public double getDyToPointer() {
+        return dyToPointer;
     }
 }
