@@ -5,32 +5,36 @@ import java.awt.*;
 /**
  * @author BlackSand
  */
-public class Symbol{
-    private int shapeType;
-    private int x;
-    private int y;
-    private int width;
-    private int height;
-    private String text;
 
-    /**
-     * shape有两点坐标和名称
-     * 存储开始拖动时，符号的x,y与鼠标位置的距离
-     **/
-    private boolean isSelected = false;
-    private double dxToPointer, dyToPointer;
+import java.awt.Color;
+import java.awt.Graphics;
 
+public abstract class Shape {
+    public int x1, y1, x2, y2;
+    public String name;
+    public Color color;
 
-    public Symbol(int shapeType, int x, int y, int width, int height, String text) {
-        this.shapeType = shapeType;
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.text = text;
+    public Shape() {
     }
 
+    ;
 
+    public Shape(int x1, int y1, int x2, int y2, String name, Color color) {
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x2;
+        this.y2 = y2;
+        this.name = name;
+        this.color = color;
+    }
+
+    public void drawShape(Graphics g) {
+
+    }
+}
+
+
+/*
     public boolean containsPoint(double x, double y) {
         return x > this.x && x < this.x + this.width && y > this.y && y < this.y + this.height;
     }
@@ -64,11 +68,12 @@ public class Symbol{
 
     }
 
+*/
 
-    /**
-     *  setter and getter
-     */
-
+/**
+ * setter and getter
+ */
+/*
     public boolean isSelected() {
         return isSelected;
     }
@@ -141,3 +146,4 @@ public class Symbol{
         return dyToPointer;
     }
 }
+*/
