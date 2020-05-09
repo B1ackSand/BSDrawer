@@ -79,18 +79,18 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
                 Shape line = new Line(x1, y1, x2, y2, name, color);
                 shapeArray[index++] = line;
             }
-            if ("矩形".equals(name)) {
+            if ("NORMALRECT".equals(name)) {
                 g.drawRect(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2 - x1), Math.abs(y2 - y1));
                 Shape rect = new Rect(x1, y1, x2, y2, name, color);
                 shapeArray[index++] = rect;
             }
-            if ("椭圆".equals(name)) {
+            if ("DIAMOND".equals(name)) {
                 g.drawOval(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2 - x1), Math.abs(y2 - y1));
                 Shape oval = new Oval(x1, y1, x2, y2, name, color);
                 shapeArray[index++] = oval;
             }
 
-            if ("多边形".equals(name) && flag1) {
+            if ("PARALLELOGRAM".equals(name) && flag1) {
                 g.drawLine(x1, y1, x2, y2);
 
                 Shape line = new Line(x1, y1, x2, y2, name, color);
