@@ -1,6 +1,7 @@
 package gui;
 
 import shape.Shape;
+import gui.DrawListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,12 +16,9 @@ import static common.Path.*;
 public class Gui extends JPanel {
 
     /**
-     * 右侧图标
+     * 左侧图标
      */
-    private Container container;
-
-
-    private ArrayList<Shape> flowchart = new ArrayList<>();
+    private Shape[] shapeParameter = new Shape[20000];
 
     /**
      * 菜单
@@ -150,63 +148,8 @@ public class Gui extends JPanel {
         jf.setJMenuBar(jmb);
         jf.setVisible(true);
         Graphics g = this.getGraphics();
-        //dl.setGR(g);
-        //dl.setSp(shapeParameter);
-
-
-        /*按钮监听
-        jb1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // 获取到的事件源就是按钮本身
-                int x = (int) (Math.random() * p2.getWidth() / 2);
-                int y = (int) (Math.random() * p2.getHeight() / 2);
-                Symbol symbol = new Symbol(SymbolType.ROUNDRECT, x, y, 100, 40, "Process\nTest");
-                System.out.println("按钮被点击");
-            }
-        });
-        jb2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // 获取到的事件源就是按钮本身
-                System.out.println("按钮被点击");
-            }
-        });
-        jb3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // 获取到的事件源就是按钮本身
-                System.out.println("按钮被点击");
-            }
-        });
-        jb4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // 获取到的事件源就是按钮本身
-                System.out.println("按钮被点击");
-            }
-        });
-        jb5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // 获取到的事件源就是按钮本身
-                System.out.println("按钮被点击");
-            }
-        });
-        jb6.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // 获取到的事件源就是按钮本身
-                System.out.println("按钮被点击");
-            }
-        });
-        jb7.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // 获取到的事件源就是按钮本身
-                System.out.println("按钮被点击");
-            }
-        });*/
+        dl.setGr(g);
+        dl.setSp(shapeParameter);
     }
 
     public static void main(String[] args) {
