@@ -66,7 +66,7 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
             y1 = e.getY();
         }
     }
-    //鼠标释放
+    //鼠标释放 
     @Override
     public void mouseReleased(java.awt.event.MouseEvent e) {
 
