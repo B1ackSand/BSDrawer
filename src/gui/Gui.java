@@ -120,63 +120,74 @@ public class Gui extends JPanel {
         file = new JMenuItem("文件");
         project = new JMenuItem("工程");
 
-        item2 = new JMenuItem("打开", new ImageIcon("images\\77.png"));
+        item2 = new JMenuItem("打开", new ImageIcon("images\\save.png"));
+
         item3 = new JMenuItem("保存(S)");
         item3.setMnemonic('S');
         // 给菜单选项添加快捷方式
         item3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
                 InputEvent.ALT_MASK));
-        item4 = new JMenuItem("另存为");
-        item5 = new JMenuItem("退出");
-        jta = new JTextArea();
-        // 将菜单添加到菜单栏上
-        xinjian.add(file);
-        xinjian.add(project);
 
-        menu1.add(xinjian);
-        menu1.add(item2);
-        menu1.add(item3);
-        menu1.add(item4);
-        menu1.addSeparator();// 添加分割线
-        menu1.add(item5);
 
-        // 将菜单添加到菜单条上
-        jmb.add(menu1);
-        jmb.add(menu2);
-        jmb.add(menu3);
+        item3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent a) {
+                // 获取到需要保存内容的组件（面板）
+                JPanel panel = (JPanel) jf.getContentPane();
+                // 创建一个与面板等宽高的缓存图片
+                BufferedImage image = new BufferedImage(
+                        panel.getWidth(),
+                        panel.getHeight(),
+                        BufferedImage.TYPE_INT_ARGB
+                );
 
-        // 将菜单添加到窗体上并使窗口可见
-        jf.setJMenuBar(jmb);
-        jf.setVisible(true);
-        Graphics g = this.getGraphics();
-        dl.setGr(g);
-        dl.setSp(shapeParameter);
+                // 获取缓存图片的画布
+                Graphics2D g2d = image.createGraphics();
 
-        // 获取到需要保存内容的组件（面板）
-        JPanel panel = (JPanel) jf.getContentPane();
+                // 把面板的内容画到画布中
+                panel.paint(g2d);
 
-// 创建一个与面板等宽高的缓存图片
-        BufferedImage image = new BufferedImage(
-                panel.getWidth(),
-                panel.getHeight(),
-                BufferedImage.TYPE_INT_ARGB
-        );
+                try {
+                    // 把缓存图片保存到本地文件
+                    ImageIO.write(image, "png", new File("save.png"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
 
-// 获取缓存图片的画布
-        Graphics2D g2d = image.createGraphics();
+        });
 
-// 把面板的内容画到画布中
-        panel.paint(g2d);
 
-        try {
-            // 把缓存图片保存到本地文件
-            ImageIO.write(image, "png", new File("panel.png"));
-        } catch (Exception e) {
-            e.printStackTrace();
+
+            item4 = new JMenuItem("另存为");
+            item5 = new JMenuItem("退出");
+            jta = new JTextArea();
+            // 将菜单添加到菜单栏上
+            xinjian.add(file);
+            xinjian.add(project);
+
+            menu1.add(xinjian);
+            menu1.add(item2);
+            menu1.add(item3);
+            menu1.add(item4);
+            menu1.addSeparator();// 添加分割线
+            menu1.add(item5);
+
+            // 将菜单添加到菜单条上
+            jmb.add(menu1);
+            jmb.add(menu2);
+            jmb.add(menu3);
+
+            // 将菜单添加到窗体上并使窗口可见
+            jf.setJMenuBar(jmb);
+            jf.setVisible(true);
+            Graphics g = this.getGraphics();
+            dl.setGr(g);
+            dl.setSp(shapeParameter);
+
+        }
+
+        public static void main (String[]args){
+            Gui gui1 = new Gui();
         }
     }
-
-    public static void main(String[] args) {
-        Gui gui1 = new Gui();
-    }
-}
