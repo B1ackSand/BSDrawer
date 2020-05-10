@@ -120,7 +120,9 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
                 Shape connector = new Connector(x1, y1, x2, y2, 10,10,name, color);
                 shapeArray[index++] = connector;
             }
+            if("CURVERECT".equals(name)&&flag1){
 
+            }
         }
 
     }
@@ -147,7 +149,7 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
             x1 = x2;
             y1 = y2;
         }
-        if ("橡皮檫".equals(name)) {
+        if ("Eraser".equals(name)) {
             color = Color.white;
             g.setColor(color);
             //设置线宽
@@ -155,7 +157,7 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
             x2 = e.getX();
             y2 = e.getY();
             g.drawLine(x1, y1, x2, y2);
-            Shape eraser = new Eraser(x1, y1, x2, y2, name, color);
+            Shape eraser = new Eraser(x1, y1, x2, y2, name, color);s
             shapeArray[index++] = eraser;
             x1 = x2;
             y1 = y2;
