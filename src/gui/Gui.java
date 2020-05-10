@@ -2,9 +2,12 @@ package gui;
 
 import shape.Shape;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 import static common.Path.*;
 
@@ -148,6 +151,29 @@ public class Gui extends JPanel {
         Graphics g = this.getGraphics();
         dl.setGr(g);
         dl.setSp(shapeParameter);
+
+        // 获取到需要保存内容的组件（面板）
+        JPanel panel = (JPanel) jf.getContentPane();
+
+// 创建一个与面板等宽高的缓存图片
+        BufferedImage image = new BufferedImage(
+                panel.getWidth(),
+                panel.getHeight(),
+                BufferedImage.TYPE_INT_ARGB
+        );
+
+// 获取缓存图片的画布
+        Graphics2D g2d = image.createGraphics();
+
+// 把面板的内容画到画布中
+        panel.paint(g2d);
+
+        try {
+            // 把缓存图片保存到本地文件
+            ImageIO.write(image, "png", new File("panel.png"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {

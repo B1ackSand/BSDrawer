@@ -2,18 +2,16 @@ package gui;
 
 
 import shape.*;
+import shape.Shape;
 
-import java.awt.BasicStroke;
+import java.awt.Component;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import javax.swing.JButton;
+import java.awt.event.*;
+import javax.swing.*;
 
-public class DrawListener implements MouseListener, MouseMotionListener, ActionListener {
+public class DrawListener extends JPanel implements MouseListener, MouseMotionListener, ActionListener {
 
     private int x1, y1, x2, y2, x3, y3, x4, y4, x5, y5;
     private Boolean flag1 = true, flag2 = false;
@@ -39,6 +37,7 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
 
     @Override
     public void mouseClicked(java.awt.event.MouseEvent e) {
+        /*
         flag2 = true;
         if (!flag1) {
             x5 = e.getX();
@@ -59,13 +58,13 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
             shapeArray[index++] = line;
             flag1 = true;
         }
-
+        */
     }
 
     //鼠标按下
 
     @Override
-    public void mousePressed(java.awt.event.MouseEvent e) {
+    public void mousePressed(MouseEvent e) {
         {
             x1 = e.getX();
             y1 = e.getY();
@@ -138,7 +137,11 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
     //鼠标拖动
 
     @Override
-    public void mouseDragged(java.awt.event.MouseEvent e) {
+    public void mouseDragged(MouseEvent e) {
+        x1=e.getX()-10;
+        y1=e.getY()+28;
+        repaint();
+        /*
         // 画笔重载需注意内存
         if ("画笔".equals(name)) {
             x2 = e.getX();
@@ -152,7 +155,7 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
         if ("Eraser".equals(name)) {
             color = Color.white;
             g.setColor(color);
-            //设置线宽 
+            //设置线宽
             ((Graphics2D) g).setStroke(new BasicStroke(20));
             x2 = e.getX();
             y2 = e.getY();
@@ -165,6 +168,7 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
             g.setColor(color);
             ((Graphics2D) g).setStroke(new BasicStroke(1));
         }
+        */
     }
 
     @Override
