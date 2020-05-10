@@ -4,6 +4,7 @@ import java.awt.*;
 
 /**
  * 所有图形符号的抽象父类
+ *
  * @author BlackSand
  */
 public abstract class AbstractSymbol implements java.io.Serializable {
@@ -17,5 +18,6 @@ public abstract class AbstractSymbol implements java.io.Serializable {
     public abstract boolean containsPoint(double x, double y);
 
     public abstract boolean isSelected();
+
     public abstract void setSelected(boolean b);
 }

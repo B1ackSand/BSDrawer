@@ -54,7 +54,7 @@ public class Gui extends JPanel {
         jf.add(this, BorderLayout.CENTER);
 
         //设置jf
-        this.setPreferredSize(new Dimension(900,600));
+        this.setPreferredSize(new Dimension(900, 600));
         this.setBackground(Color.white);
 
         //事件监听器对象
@@ -64,14 +64,14 @@ public class Gui extends JPanel {
         this.addMouseMotionListener(dl);
 
         //设置p1
-        p1.setPreferredSize(new Dimension(300,700));
+        p1.setPreferredSize(new Dimension(300, 700));
         this.setBackground(Color.white);
 
         //创建图形按钮
-        JButton jb1 = new JButton("ROUNDRECT",new ImageIcon(ROUNDRECT));
-        JButton jb2 = new JButton("NORMALRECT",new ImageIcon(NORMALRECT));
-        JButton jb3 = new JButton("DIAMOND",new ImageIcon(DIAMOND));
-        JButton jb4 = new JButton("PARALLELOGRAM",new ImageIcon(PARALLELOGRAM));
+        JButton jb1 = new JButton("ROUNDRECT", new ImageIcon(ROUNDRECT));
+        JButton jb2 = new JButton("NORMALRECT", new ImageIcon(NORMALRECT));
+        JButton jb3 = new JButton("DIAMOND", new ImageIcon(DIAMOND));
+        JButton jb4 = new JButton("PARALLELOGRAM", new ImageIcon(PARALLELOGRAM));
         JButton jb5 = new JButton(new ImageIcon(ARROWLINE));
         JButton jb6 = new JButton(new ImageIcon(CONNECTOR));
         JButton jb7 = new JButton(new ImageIcon(CURVERECT));
