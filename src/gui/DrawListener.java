@@ -152,7 +152,7 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
         if ("Eraser".equals(name)) {
             color = Color.white;
             g.setColor(color);
-            //设置线宽
+            //设置线宽 
             ((Graphics2D) g).setStroke(new BasicStroke(20));
             x2 = e.getX();
             y2 = e.getY();
