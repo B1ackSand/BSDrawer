@@ -72,8 +72,8 @@ public class Gui extends JPanel {
         JButton jb2 = new JButton("NORMALRECT", new ImageIcon(NORMALRECT));
         JButton jb3 = new JButton("DIAMOND", new ImageIcon(DIAMOND));
         JButton jb4 = new JButton("PARALLELOGRAM", new ImageIcon(PARALLELOGRAM));
-        JButton jb5 = new JButton(new ImageIcon(ARROWLINE));
-        JButton jb6 = new JButton(new ImageIcon(CONNECTOR));
+        JButton jb5 = new JButton("ARROWLINE", new ImageIcon(ARROWLINE));
+        JButton jb6 = new JButton("CONNECTOR", new ImageIcon(CONNECTOR));
         JButton jb7 = new JButton(new ImageIcon(CURVERECT));
 
         //添加图片按钮

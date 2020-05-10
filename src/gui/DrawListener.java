@@ -110,6 +110,16 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
 
                 flag1 = false;
             }
+            if ("ARROWLINE".equals(name) && flag1) {
+                g.drawLine(x1, y1, x2, y2);
+                Shape line = new Line(x1, y1, x2, y2, name, color);
+                shapeArray[index++] = line;
+            }
+            if ("CONNECTOR".equals(name) && flag1) {
+                g.drawArc(Math.abs((x2+x1)/2), Math.abs((y2+y1)/2), 10, 10, 0, 360);
+                Shape connector = new Connector(x1, y1, x2, y2, 10,10,name, color);
+                shapeArray[index++] = connector;
+            }
 
         }
 
