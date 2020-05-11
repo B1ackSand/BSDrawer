@@ -18,6 +18,6 @@ public class RoundRect extends Shape {
     @Override
     public void drawShape(Graphics g) {
         g.setColor(color);
-        g.drawRoundRect(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2 - x1), Math.abs(y2 - y1),30,30);
+        g.drawRoundRect(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2 - x1), Math.abs(y2 - y1), 30, 30);
     }
 }

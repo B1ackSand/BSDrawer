@@ -77,7 +77,7 @@ public class Gui extends JPanel {
         JButton jb4 = new JButton("PARALLELOGRAM", new ImageIcon(PARALLELOGRAM));
         JButton jb5 = new JButton("ARROWLINE", new ImageIcon(ARROWLINE));
         JButton jb6 = new JButton("CONNECTOR", new ImageIcon(CONNECTOR));
-        JButton jb7 = new JButton(new ImageIcon(CURVERECT));
+        JButton jb7 = new JButton("CURVERECT", new ImageIcon(CURVERECT));
 
         //添加图片按钮
         p1.add(jb1);
@@ -158,36 +158,35 @@ public class Gui extends JPanel {
         });
 
 
+        item4 = new JMenuItem("另存为");
+        item5 = new JMenuItem("退出");
+        jta = new JTextArea();
+        // 将菜单添加到菜单栏上
+        xinjian.add(file);
+        xinjian.add(project);
 
-            item4 = new JMenuItem("另存为");
-            item5 = new JMenuItem("退出");
-            jta = new JTextArea();
-            // 将菜单添加到菜单栏上
-            xinjian.add(file);
-            xinjian.add(project);
+        menu1.add(xinjian);
+        menu1.add(item2);
+        menu1.add(item3);
+        menu1.add(item4);
+        menu1.addSeparator();// 添加分割线
+        menu1.add(item5);
 
-            menu1.add(xinjian);
-            menu1.add(item2);
-            menu1.add(item3);
-            menu1.add(item4);
-            menu1.addSeparator();// 添加分割线
-            menu1.add(item5);
+        // 将菜单添加到菜单条上
+        jmb.add(menu1);
+        jmb.add(menu2);
+        jmb.add(menu3);
 
-            // 将菜单添加到菜单条上
-            jmb.add(menu1);
-            jmb.add(menu2);
-            jmb.add(menu3);
+        // 将菜单添加到窗体上并使窗口可见
+        jf.setJMenuBar(jmb);
+        jf.setVisible(true);
+        Graphics g = this.getGraphics();
+        dl.setGr(g);
+        dl.setSp(shapeParameter);
 
-            // 将菜单添加到窗体上并使窗口可见
-            jf.setJMenuBar(jmb);
-            jf.setVisible(true);
-            Graphics g = this.getGraphics();
-            dl.setGr(g);
-            dl.setSp(shapeParameter);
-
-        }
-
-        public static void main (String[]args){
-            Gui gui1 = new Gui();
-        }
     }
+
+    public static void main(String[] args) {
+        Gui gui1 = new Gui();
+    }
+}

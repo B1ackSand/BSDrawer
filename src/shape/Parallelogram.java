@@ -6,13 +6,13 @@ import java.awt.Graphics;
 /**
  * @author BlackSand
  */
-public class Diamond extends Shape {
-    public Diamond() {
+public class Parallelogram extends Shape {
+    public Parallelogram() {
     }
 
     ;
 
-    public Diamond(int[] xPoint, int[] yPoint, String name, Color color) {
+    public Parallelogram(int[] xPoint, int[] yPoint, String name, Color color) {
         super(xPoint, yPoint, name, color);
     }
 

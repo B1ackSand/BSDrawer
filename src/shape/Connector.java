@@ -15,6 +15,6 @@ public class Connector extends Shape {
     @Override
     public void drawShape(Graphics g) {
         g.setColor(color);
-        g.drawArc(Math.abs((x2+x1)/2), Math.abs((y2+y1)/2), 10, 10, 0, 360);
+        g.drawArc(Math.abs((x2 + x1) / 2), Math.abs((y2 + y1) / 2), 10, 10, 0, 360);
     }
 }

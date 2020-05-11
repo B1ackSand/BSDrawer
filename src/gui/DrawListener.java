@@ -37,6 +37,7 @@ public class DrawListener extends JPanel implements MouseListener, MouseMotionLi
 
     @Override
     public void mouseClicked(java.awt.event.MouseEvent e) {
+
         /*
         flag2 = true;
         if (!flag1) {
@@ -75,7 +76,7 @@ public class DrawListener extends JPanel implements MouseListener, MouseMotionLi
 
     @Override
     public void mouseReleased(java.awt.event.MouseEvent e) {
-
+    /*
         {
             x2 = e.getX();
             y2 = e.getY();
@@ -123,23 +124,15 @@ public class DrawListener extends JPanel implements MouseListener, MouseMotionLi
 
             }
         }
-
-    }
-
-    @Override
-    public void mouseEntered(java.awt.event.MouseEvent e) {
-    }
-
-    @Override
-    public void mouseExited(java.awt.event.MouseEvent e) {
+    */
     }
 
     //鼠标拖动
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        x1=e.getX()-10;
-        y1=e.getY()+28;
+        x1 = e.getX() - 10;
+        y1 = e.getY() + 28;
         repaint();
         /*
         // 画笔重载需注意内存
@@ -179,48 +172,13 @@ public class DrawListener extends JPanel implements MouseListener, MouseMotionLi
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if ("".equals(e.getActionCommand())) {
-            // 获取当前事件源，并强制转换
-            JButton jb = (JButton) e.getSource();
-            // 将按钮背景色赋值给color
-            color = jb.getBackground();
-            // 设置画笔背景色
-            // 注意：不能直接写成g.setColor(jb.getBackground());后面重绘时需用到color参数；
-            g.setColor(color);
-        } else {
-            name = e.getActionCommand();
+    }
 
-            if ("清屏".equals(name)) {
-                color = Color.white;
-                g.setColor(color);
-                x1 = 0;
-                y1 = 0;
-                x2 = 900;
-                y2 = 700;
-                g.fillRect(x1, y1, x2, y2);
+    @Override
+    public void mouseEntered(java.awt.event.MouseEvent e) {
+    }
 
-                // 重置多边形最后一条线段数据
-                x3 = 0;
-                y3 = 0;
-                x5 = 0;
-                y5 = 0;
-            }
-        }
-
-        // 多边形切换设置
-        flag1 = true;
-        // 点击非清屏按钮，先完成多边形绘制
-        if (!"".equals(e.getActionCommand()) && flag2) {
-            g.drawLine(x5, y5, x3, y3);
-
-            Shape line = new Line(x5, y5, x3, y3, name, color);
-            shapeArray[index++] = line;
-
-            flag2 = false;
-        }
-        // 点击颜色按钮继续画图
-        if ("".equals(e.getActionCommand()) && flag2) {
-            flag1 = false;
-        }
+    @Override
+    public void mouseExited(java.awt.event.MouseEvent e) {
     }
 }
