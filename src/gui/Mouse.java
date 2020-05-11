@@ -22,7 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
-public class Mouse extends drawings {
+public class Mouse extends JPanel {
 
     private JPanel jContentPane = null;
 
@@ -42,6 +42,7 @@ public class Mouse extends drawings {
 
         return jContentPane;
     }
+
 
     class ImagePanel extends JPanel implements MouseListener,
             MouseMotionListener {
@@ -64,14 +65,15 @@ public class Mouse extends drawings {
         private JLabel west = null;
 
         private JLabel middle = null;
-
+        /*8个方向的位点*/
         ImageIcon imageIcon = null;
-
+        /*图形*/
         boolean isSelected = false;
 
+        /*是否被选中*/
         public ImagePanel(ImageIcon imageIcon) {
             this.imageIcon = imageIcon;
-            this.setBounds(250, 250, 100, 100);
+            this.setBounds(this.getX(), this.getY(), this.getWidth(), this.getHeight());
             x1 = this.getWidth();
             y1 = this.getHeight();
 
@@ -139,7 +141,7 @@ public class Mouse extends drawings {
             south.setBounds((x1 - 3) / 2, y1 - 5, 5, 5);
             southWest.setBounds(0, y1 - 5, 5, 5);
             west.setBounds(0, (y1 - 3) / 2, 5, 5);
-
+            /*初始化8个位点*/
 
             this.setLayout(null);
             this.setMaximumSize(new Dimension(150, 150));
@@ -158,9 +160,10 @@ public class Mouse extends drawings {
 
         }
 
+        @Override
         public void mouseClicked(MouseEvent e) {
 
-            if (isSelected == false) {
+            if (isSelected == false)   /*选中图片*/ {
                 isSelected = true;
                 this.setBorder(new LineBorder(Color.BLACK, 4));
                 northWest.setVisible(true);
@@ -173,7 +176,7 @@ public class Mouse extends drawings {
                 west.setVisible(true);
                 this.repaint();
             } else if (isSelected == true) {
-                if (e.getClickCount() == 1) {
+                if (e.getClickCount() == 1)  /*取消选中*/ {
                     isSelected = false;
                     this.setBorder(new LineBorder(Color.BLACK, 4));
                     northWest.setVisible(false);
@@ -188,9 +191,10 @@ public class Mouse extends drawings {
                     this.addKeyListener(new KeyListener() {
                         @Override
                         public void keyPressed(KeyEvent e) {
-                            if (e.getKeyCode() == KeyEvent.VK_DELETE)
+                            if (e.getKeyCode() == KeyEvent.VK_DELETE) {
                                 isSelected = false;
-                            this.repaint(); 
+                            }
+                            //this.repaint(); /*删除*/
                         }
 
                         @Override
@@ -202,11 +206,11 @@ public class Mouse extends drawings {
                         }
                     });
                 } else {
-                    if (e.getClickCount() == 2)
+                    if (e.getClickCount() == 2) {
                         this.addKeyListener(new KeyListener() {
                             @Override
                             public void keyPressed(KeyEvent arg0) {
-                                this.drawString();
+                                //this.drawString();/*写文本*/
                             }
 
                             @Override
@@ -217,14 +221,17 @@ public class Mouse extends drawings {
                             public void keyTyped(KeyEvent arg0) {
                             }
                         });
+                    }
                 }
             }
         }
 
+        @Override
         public void mousePressed(MouseEvent e) {
         }
 
-        public void mouseReleased(MouseEvent e) {
+        @Override
+        public void mouseReleased(MouseEvent e)  /*防止鼠标在拖动过程中移出范围*/ {
             if (isSelected) {
                 if (getCursor().getType() != Cursor.DEFAULT_CURSOR) {
                     setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
@@ -232,7 +239,8 @@ public class Mouse extends drawings {
             }
         }
 
-        public void mouseEntered(MouseEvent e) {
+        @Override
+        public void mouseEntered(MouseEvent e)   /*鼠标进入哪个区域*/ {
             if (isSelected) {
                 if (e.getComponent() == northWest) {
                     setCursor(new Cursor(Cursor.NW_RESIZE_CURSOR));
@@ -250,17 +258,17 @@ public class Mouse extends drawings {
                     setCursor(new Cursor(Cursor.SW_RESIZE_CURSOR));
                 } else if (e.getComponent() == west) {
                     setCursor(new Cursor(Cursor.W_RESIZE_CURSOR));
-                } /*else if(e.getComponent() == this){
-setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-}*/
+                }
             }
         }
 
+        @Override
         public void mouseExited(MouseEvent e) {
 
         }
 
-        public void mouseDragged(MouseEvent e) {
+        @Override
+        public void mouseDragged(MouseEvent e)  /*缩放图片*/ {
             if (isSelected) {
                 int type = getCursor().getType();
                 int x, y, w, h;
@@ -324,7 +332,7 @@ setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                     case Cursor.DEFAULT_CURSOR:
                         if (e.getComponent() == this) {
 
-                            this.setBounds(x + e.getX() - w / 2, y + e.getY() - h / 2, w, h);
+                            this.setBounds(x + e.getX() - w / 2, y + e.getY() - h / 2, w, h);/*拖动图片*/
                         }
                     default:
                         break;
@@ -345,13 +353,16 @@ setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 southWest.setBounds(0, h - 5, 5, 5);
                 west.setBounds(0, (h - 3) / 2, 5, 5);
                 this.repaint();
+                /*重画*/
             }
         }
 
+        @Override
         public void mouseMoved(MouseEvent e) {
         }
 
 
+        @Override
         public void paint(Graphics g) {
             super.paint(g);
 
@@ -368,7 +379,7 @@ setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         private JLabel end = null;
         boolean isSelected = false;
 
-        public LinePanel(int x1, int y1, int x2, int y2) {
+        public LinePanel(int x1, int y1, int x2, int y2)  /*初始化线段位点*/ {
             start = new JLabel();
             start.setText("");
             start.setBorder(new LineBorder(Color.WHITE, 1));
@@ -391,7 +402,7 @@ setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         }
 
         @Override
-        public void mouseDragged(MouseEvent e) {
+        public void mouseDragged(MouseEvent e)  /*拖动直线*/ {
             if (isSelected) {
                 int type = getCursor().getType();
                 switch (type) {
@@ -415,7 +426,7 @@ setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         }
 
         @Override
-        public void mouseClicked(MouseEvent e) {
+        public void mouseClicked(MouseEvent e)    /*选中直线*/ {
             if (isSelected == false) {
                 isSelected = true;
                 this.setBorder(new LineBorder(Color.BLACK, 4));
@@ -432,7 +443,7 @@ setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 } else {
                     this.addKeyListener(new KeyListener() {
                         @Override
-                        public void keyPressed(KeyEvent e) {
+                        public void keyPressed(KeyEvent e)  /*删除*/ {
                             if (e.getKeyCode() == KeyEvent.VK_DELETE) {
                                 start.setVisible(false);
                                 end.setVisible(false);
@@ -454,7 +465,7 @@ setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         }
 
         @Override
-        public void mouseEntered(MouseEvent e) {
+        public void mouseEntered(MouseEvent e)  /*鼠标进入哪个位点区域*/ {
             if (isSelected) {
                 if (e.getComponent() == start) {
                     setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
@@ -473,7 +484,7 @@ setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         }
 
         @Override
-        public void mouseReleased(MouseEvent e) {
+        public void mouseReleased(MouseEvent e)  /*防止鼠标在拖动过程中移出范围*/ {
             if (isSelected) {
                 if (getCursor().getType() != Cursor.DEFAULT_CURSOR) {
                     setCursor(new Cursor(Cursor.DEFAULT_CURSOR));

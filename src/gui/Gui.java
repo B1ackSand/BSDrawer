@@ -61,7 +61,7 @@ public class Gui extends JPanel {
         this.setBackground(Color.white);
 
         //事件监听器对象
-        DrawListener dl = new DrawListener();
+        Mouse dl = new Mouse();
         //给画布加监听器
         this.addMouseListener(dl);
         this.addMouseMotionListener(dl);
@@ -181,8 +181,8 @@ public class Gui extends JPanel {
         jf.setJMenuBar(jmb);
         jf.setVisible(true);
         Graphics g = this.getGraphics();
-        dl.setGr(g);
-        dl.setSp(shapeParameter);
+        //dl.setGr(g);
+        //dl.setSp(shapeParameter);
 
     }
 

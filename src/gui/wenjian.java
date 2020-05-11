@@ -1,4 +1,4 @@
-package main;
+package gui;
 
 import java.awt.Graphics2D;
 import java.awt.event.ItemListener;
@@ -15,27 +15,27 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import awaf.drawings;
+//import awaf.drawings;
 
-public class Main extends JFrame{
-    private ObjectInputStream input;
-    private ObjectOutputStream output; 
-    int index = 0; //Í¼ĞÎÊıÁ¿
-    drawings[] itemList = new drawings[5000];//ÓÃÀ´´æ·Å»ù±¾Í¼ĞÎµÄÊı×é
-    
-    
-    class drawings implements Serializable//¸¸Àà£¬»ù±¾Í¼ĞÎµ¥Ôª£¬ÓÃµ½´®ĞĞ»¯½Ó¿Ú£¬±£´æÊ±ËùÓÃ
-    {
-        int x1, y1, x2, y2; //¶¨Òå×ø±êÊôĞÔ
-        int type;       //¶¨Òå×ÖÌåÊôĞÔ
-        String s1;
-        String s2;      //¶¨Òå×ÖÌå·ç¸ñÊôĞÔ
-        void draw(Graphics2D g2d) {
-        }
-        //¶¨Òå»æÍ¼º¯Êı
-    }
-    
-    
+public class wenjian extends JFrame{
+	private ObjectInputStream input;
+	private ObjectOutputStream output;
+	int index = 0; //å›¾å½¢æ•°é‡
+	drawings[] itemList = new drawings[5000];//ç”¨æ¥å­˜æ”¾åŸºæœ¬å›¾å½¢çš„æ•°ç»„
+
+
+	class drawings implements Serializable//çˆ¶ç±»ï¼ŒåŸºæœ¬å›¾å½¢å•å…ƒï¼Œç”¨åˆ°ä¸²è¡ŒåŒ–æ¥å£ï¼Œä¿å­˜æ—¶æ‰€ç”¨
+	{
+		int x1, y1, x2, y2; //å®šä¹‰åæ ‡å±æ€§
+		int type;       //å®šä¹‰å­—ä½“å±æ€§
+		String s1;
+		String s2;      //å®šä¹‰å­—ä½“é£æ ¼å±æ€§
+		void draw(Graphics2D g2d) {
+		}
+		//å®šä¹‰ç»˜å›¾å‡½æ•°
+	}
+
+
 	public void saveFile() {
 		JFileChooser fileChooser= new JFileChooser();
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -43,19 +43,19 @@ public class Main extends JFrame{
 		if(result==JFileChooser.CANCEL_OPTION) {
 			return;
 		}
-		
+
 		File fileName = fileChooser.getSelectedFile();
 		fileName.canWrite();
-		
+
 		if(fileName==null||fileName.getName().equals("")) {
-			JOptionPane.showMessageDialog(fileChooser, "ÎŞĞ§µÄÎÄ¼şÃû","ÎŞĞ§µÄÎÄ¼şÃû",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(fileChooser, "æ— æ•ˆçš„æ–‡ä»¶å","æ— æ•ˆçš„æ–‡ä»¶å",JOptionPane.ERROR_MESSAGE);
 		} else {
 			try {
 				fileName.delete();
 				FileOutputStream fos = new FileOutputStream(fileName);
 				output=new ObjectOutputStream(fos);
 				drawings record;
-				
+
 				output.writeInt(index);
 				for(int i=0;i<index;i++) {
 					drawings p =itemList[i];
@@ -70,8 +70,8 @@ public class Main extends JFrame{
 			}
 		}
 	}
-	
-	
+
+
 	public void openFile() {
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -82,8 +82,8 @@ public class Main extends JFrame{
 		File fileName = fileChooser.getSelectedFile();
 		fileName.canRead();
 		if(fileName==null||fileName.getName().equals("")) {
-			JOptionPane.showMessageDialog(fileChooser, "ÎŞĞ§µÄÎÄ¼şÃû","ÎŞĞ§µÄÎÄ¼şÃû",JOptionPane.ERROR_MESSAGE);;
-			
+			JOptionPane.showMessageDialog(fileChooser, "æ— æ•ˆçš„æ–‡ä»¶å","æ— æ•ˆçš„æ–‡ä»¶å",JOptionPane.ERROR_MESSAGE);;
+
 		} else {
 			try {
 				FileInputStream fis = new FileInputStream(fileName);
@@ -95,31 +95,31 @@ public class Main extends JFrame{
 					inputRecord = (drawings) input.readObject();
 					itemList[index] = inputRecord;
 				}
-				createNewItem(); //ĞÂ½¨»­Í¼»ù±¾µ¥ÔªµÄ³ÌĞò¶Î
+				//createNewItem(); //æ–°å»ºç”»å›¾åŸºæœ¬å•å…ƒçš„ç¨‹åºæ®µ
 				input.close();
 				repaint();
 			}catch (EOFException endofEofException) {
-				JOptionPane.showMessageDialog(this, "¶ÁÈ¡Íê±Ï",
-						"Íê±Ï",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, "è¯»å–å®Œæ¯•",
+						"å®Œæ¯•",JOptionPane.ERROR_MESSAGE);
 				// TODO: handle exception
 			}catch (ClassNotFoundException classNotFoundException) {
-				JOptionPane.showMessageDialog(this, "ÎŞ·¨´´½¨¶ÔÏó",
+				JOptionPane.showMessageDialog(this, "æ— æ³•åˆ›å»ºå¯¹è±¡",
 						"end of file",JOptionPane.ERROR_MESSAGE);
 			}catch (IOException ioException) {
-				JOptionPane.showMessageDialog(this, "¶ÁÈ¡Ê§°Ü",
+				JOptionPane.showMessageDialog(this, "è¯»å–å¤±è´¥",
 						"Read Error",JOptionPane.ERROR_MESSAGE);
 				// TODO: handle exception
 			}
 		}
 	}
-	
+
 	public void newFile() {
 		index =0 ;
-		createNewItem();//´´½¨ĞÂµÄ»ù±¾Í¼Ïñµ¥Î»
+		//createNewItem();//åˆ›å»ºæ–°çš„åŸºæœ¬å›¾åƒå•ä½
 		repaint();
-		
+
 	}
-	
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
