@@ -15,21 +15,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
+/**
+ * @author jiajun
+ */
 public class Mouse extends JFrame {
 
     private JPanel jContentPane = null;
-
     private JPanel jPanel = null;
 
-    ImageIcon imageIcon = new ImageIcon("E:\\1.png");/*图片*/
 
-    public Mouse() {
-        this.setName("Mouse");
-        this.setBounds(300, 300, 600, 600);
-        this.setVisible(true);
-        this.setContentPane(this.getJContentPane());
-
-    }
+    ImageIcon imageIcon = new ImageIcon("src\\1.png");
+    /*图片*/
 
 
     private JPanel getJContentPane() {
@@ -37,7 +33,6 @@ public class Mouse extends JFrame {
         jContentPane = new JPanel();
         jContentPane.setLayout(null);
         jContentPane.add(new ImagePanel(imageIcon), null);
-
         return jContentPane;
     }
 
@@ -249,8 +244,8 @@ public class Mouse extends JFrame {
                 } else if (e.getComponent() == west) {
                     setCursor(new Cursor(Cursor.W_RESIZE_CURSOR));
                 } /*else if(e.getComponent() == this){
-setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-}*/
+                setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                }   */
             }
         }
 
@@ -462,8 +457,9 @@ setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         }
 
     }
-
+    /*
     public static void main(String[] args) {
         Mouse mouse = new Mouse();
     }
+    */
 }

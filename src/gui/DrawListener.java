@@ -3,7 +3,6 @@ package gui;
 
 import shape.*;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -11,7 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import javax.swing.JButton;
+
+import javax.swing.*;
+
+
 
 public class DrawListener implements MouseListener, MouseMotionListener, ActionListener {
 
@@ -51,15 +53,6 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
             x4 = x5;
             y4 = y5;
         }
-        //双击自动完成多边形闭合
-        if (e.getClickCount() == 2) {
-            g.drawLine(x5, y5, x3, y3);
-
-            Shape line = new Line(x5, y5, x3, y3, name, color);
-            shapeArray[index++] = line;
-            flag1 = true;
-        }
-
     }
 
     //鼠标按下
@@ -74,6 +67,7 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
 
     //鼠标释放
 
+
     @Override
     public void mouseReleased(java.awt.event.MouseEvent e) {
 
@@ -85,6 +79,7 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
                 g.drawRoundRect(x2,y2,200,50, 30, 30);
                 Shape roundRect = new RoundRect(x1, y1, x2, y2, 30, 30, name, color);
                 shapeArray[index++] = roundRect;
+
             }
             if ("NORMALRECT".equals(name)) {
                 g.drawRect(x2, y2,200 ,50 );

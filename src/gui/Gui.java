@@ -1,5 +1,8 @@
 package gui;
 
+import shape.Connector;
+import shape.Line;
+import shape.NormalRect;
 import shape.Shape;
 
 import javax.swing.*;
@@ -46,7 +49,7 @@ public class Gui extends JPanel {
         //绘图按钮面板
         JPanel p1 = new JPanel();
         //画板
-        //JPanel p2 = new JPanel();
+        JLabel p2 = new JLabel();
 
         p1.setLayout(new GridLayout(7, 1));
         p1.setLayout(new GridLayout(7, 1));
@@ -102,6 +105,8 @@ public class Gui extends JPanel {
         jb5.addActionListener(dl);
         jb6.addActionListener(dl);
         jb7.addActionListener(dl);
+
+
 
         jmb = new JMenuBar();
         menu1 = new JMenu("文件(F)");
