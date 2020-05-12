@@ -2,12 +2,9 @@ package gui;
 
 import shape.Shape;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 
 import static common.Path.*;
 
@@ -61,7 +58,7 @@ public class Gui extends JPanel {
         this.setBackground(Color.white);
 
         //事件监听器对象
-        Mouse dl = new Mouse();
+        DrawListener dl = new DrawListener();
         //给画布加监听器
         this.addMouseListener(dl);
         this.addMouseMotionListener(dl);
@@ -77,7 +74,7 @@ public class Gui extends JPanel {
         JButton jb4 = new JButton("PARALLELOGRAM", new ImageIcon(PARALLELOGRAM));
         JButton jb5 = new JButton("ARROWLINE", new ImageIcon(ARROWLINE));
         JButton jb6 = new JButton("CONNECTOR", new ImageIcon(CONNECTOR));
-        JButton jb7 = new JButton("CURVERECT", new ImageIcon(CURVERECT));
+        JButton jb7 = new JButton(new ImageIcon(CURVERECT));
 
         //添加图片按钮
         p1.add(jb1);
@@ -120,44 +117,12 @@ public class Gui extends JPanel {
         file = new JMenuItem("文件");
         project = new JMenuItem("工程");
 
-        item2 = new JMenuItem("打开", new ImageIcon("images\\save.png"));
-
+        item2 = new JMenuItem("打开", new ImageIcon("images\\77.png"));
         item3 = new JMenuItem("保存(S)");
         item3.setMnemonic('S');
         // 给菜单选项添加快捷方式
         item3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
                 InputEvent.ALT_MASK));
-
-
-        item3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent a) {
-                // 获取到需要保存内容的组件（面板）
-                JPanel panel = (JPanel) jf.getContentPane();
-                // 创建一个与面板等宽高的缓存图片
-                BufferedImage image = new BufferedImage(
-                        panel.getWidth(),
-                        panel.getHeight(),
-                        BufferedImage.TYPE_INT_ARGB
-                );
-
-                // 获取缓存图片的画布
-                Graphics2D g2d = image.createGraphics();
-
-                // 把面板的内容画到画布中
-                panel.paint(g2d);
-
-                try {
-                    // 把缓存图片保存到本地文件
-                    ImageIO.write(image, "png", new File("save.png"));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-        });
-
-
         item4 = new JMenuItem("另存为");
         item5 = new JMenuItem("退出");
         jta = new JTextArea();
@@ -181,9 +146,8 @@ public class Gui extends JPanel {
         jf.setJMenuBar(jmb);
         jf.setVisible(true);
         Graphics g = this.getGraphics();
-        //dl.setGr(g);
-        //dl.setSp(shapeParameter);
-
+        dl.setGr(g);
+        dl.setSp(shapeParameter);
     }
 
     public static void main(String[] args) {

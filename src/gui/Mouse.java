@@ -3,34 +3,32 @@ package gui;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.TextField;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
-import javax.swing.JTextField;
 import javax.swing.ImageIcon;
-import javax.swing.JApplet;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
-public class Mouse extends JPanel {
+public class Mouse extends JFrame {
 
     private JPanel jContentPane = null;
 
     private JPanel jPanel = null;
 
-    ImageIcon imageIcon = new ImageIcon();
+    ImageIcon imageIcon = new ImageIcon("E:\\1.png");/*图片*/
 
     public Mouse() {
+        this.setName("Mouse");
+        this.setBounds(300, 300, 600, 600);
+        this.setVisible(true);
+        this.setContentPane(this.getJContentPane());
+
     }
 
 
@@ -42,7 +40,6 @@ public class Mouse extends JPanel {
 
         return jContentPane;
     }
-
 
     class ImagePanel extends JPanel implements MouseListener,
             MouseMotionListener {
@@ -65,15 +62,15 @@ public class Mouse extends JPanel {
         private JLabel west = null;
 
         private JLabel middle = null;
-        /*8个方向的位点*/
+        /*8个位点*/
         ImageIcon imageIcon = null;
-        /*图形*/
+        /*图片*/
         boolean isSelected = false;
 
         /*是否被选中*/
         public ImagePanel(ImageIcon imageIcon) {
             this.imageIcon = imageIcon;
-            this.setBounds(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+            this.setBounds(200, 200, 100, 100);
             x1 = this.getWidth();
             y1 = this.getHeight();
 
@@ -157,13 +154,13 @@ public class Mouse extends JPanel {
             this.add(south, null);
             this.add(southWest, null);
             this.add(west, null);
-
+            /*初始化*/
         }
 
         @Override
         public void mouseClicked(MouseEvent e) {
 
-            if (isSelected == false)   /*选中图片*/ {
+            if (isSelected == false) {/*选中图片*/
                 isSelected = true;
                 this.setBorder(new LineBorder(Color.BLACK, 4));
                 northWest.setVisible(true);
@@ -175,8 +172,9 @@ public class Mouse extends JPanel {
                 southWest.setVisible(true);
                 west.setVisible(true);
                 this.repaint();
+
             } else if (isSelected == true) {
-                if (e.getClickCount() == 1)  /*取消选中*/ {
+                if (e.getClickCount() == 1) {/*取消选中*/
                     isSelected = false;
                     this.setBorder(new LineBorder(Color.BLACK, 4));
                     northWest.setVisible(false);
@@ -187,14 +185,23 @@ public class Mouse extends JPanel {
                     south.setVisible(false);
                     southWest.setVisible(false);
                     west.setVisible(false);
-                    this.repaint();
+                    this.repaint();/*删除*/
+                } else {
                     this.addKeyListener(new KeyListener() {
                         @Override
                         public void keyPressed(KeyEvent e) {
                             if (e.getKeyCode() == KeyEvent.VK_DELETE) {
-                                isSelected = false;
+                                northWest.setVisible(false);
+                                north.setVisible(false);
+                                northEast.setVisible(false);
+                                east.setVisible(false);
+                                southEast.setVisible(false);
+                                south.setVisible(false);
+                                southWest.setVisible(false);
+                                west.setVisible(false);
+                                jContentPane.setVisible(false);
+                                repaint();/*删除*/
                             }
-                            //this.repaint(); /*删除*/
                         }
 
                         @Override
@@ -205,23 +212,6 @@ public class Mouse extends JPanel {
                         public void keyTyped(KeyEvent e) {
                         }
                     });
-                } else {
-                    if (e.getClickCount() == 2) {
-                        this.addKeyListener(new KeyListener() {
-                            @Override
-                            public void keyPressed(KeyEvent arg0) {
-                                //this.drawString();/*写文本*/
-                            }
-
-                            @Override
-                            public void keyReleased(KeyEvent arg0) {
-                            }
-
-                            @Override
-                            public void keyTyped(KeyEvent arg0) {
-                            }
-                        });
-                    }
                 }
             }
         }
@@ -231,7 +221,7 @@ public class Mouse extends JPanel {
         }
 
         @Override
-        public void mouseReleased(MouseEvent e)  /*防止鼠标在拖动过程中移出范围*/ {
+        public void mouseReleased(MouseEvent e) {/*防止鼠标在拖动过程中移出范围*/
             if (isSelected) {
                 if (getCursor().getType() != Cursor.DEFAULT_CURSOR) {
                     setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
@@ -240,7 +230,7 @@ public class Mouse extends JPanel {
         }
 
         @Override
-        public void mouseEntered(MouseEvent e)   /*鼠标进入哪个区域*/ {
+        public void mouseEntered(MouseEvent e) {/*鼠标进入哪个区域*/
             if (isSelected) {
                 if (e.getComponent() == northWest) {
                     setCursor(new Cursor(Cursor.NW_RESIZE_CURSOR));
@@ -258,7 +248,9 @@ public class Mouse extends JPanel {
                     setCursor(new Cursor(Cursor.SW_RESIZE_CURSOR));
                 } else if (e.getComponent() == west) {
                     setCursor(new Cursor(Cursor.W_RESIZE_CURSOR));
-                }
+                } /*else if(e.getComponent() == this){
+setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+}*/
             }
         }
 
@@ -268,7 +260,7 @@ public class Mouse extends JPanel {
         }
 
         @Override
-        public void mouseDragged(MouseEvent e)  /*缩放图片*/ {
+        public void mouseDragged(MouseEvent e) {/*缩放图片*/
             if (isSelected) {
                 int type = getCursor().getType();
                 int x, y, w, h;
@@ -352,15 +344,13 @@ public class Mouse extends JPanel {
                 south.setBounds((w - 3) / 2, h - 5, 5, 5);
                 southWest.setBounds(0, h - 5, 5, 5);
                 west.setBounds(0, (h - 3) / 2, 5, 5);
-                this.repaint();
-                /*重画*/
+                this.repaint();/*重画*/
             }
         }
 
         @Override
         public void mouseMoved(MouseEvent e) {
         }
-
 
         @Override
         public void paint(Graphics g) {
@@ -370,7 +360,6 @@ public class Mouse extends JPanel {
                     this.getHeight() - 10, this);
         }
 
-
     }
 
     class LinePanel extends JPanel implements MouseListener, MouseMotionListener {
@@ -379,7 +368,7 @@ public class Mouse extends JPanel {
         private JLabel end = null;
         boolean isSelected = false;
 
-        public LinePanel(int x1, int y1, int x2, int y2)  /*初始化线段位点*/ {
+        public LinePanel(int x1, int y1, int x2, int y2) {/*初始化线段位点*/
             start = new JLabel();
             start.setText("");
             start.setBorder(new LineBorder(Color.WHITE, 1));
@@ -402,7 +391,7 @@ public class Mouse extends JPanel {
         }
 
         @Override
-        public void mouseDragged(MouseEvent e)  /*拖动直线*/ {
+        public void mouseDragged(MouseEvent e) {/*拖动直线*/
             if (isSelected) {
                 int type = getCursor().getType();
                 switch (type) {
@@ -426,7 +415,7 @@ public class Mouse extends JPanel {
         }
 
         @Override
-        public void mouseClicked(MouseEvent e)    /*选中直线*/ {
+        public void mouseClicked(MouseEvent e) {/*选中直线*/
             if (isSelected == false) {
                 isSelected = true;
                 this.setBorder(new LineBorder(Color.BLACK, 4));
@@ -434,38 +423,18 @@ public class Mouse extends JPanel {
                 end.setVisible(true);
                 this.repaint();
             } else {
-                if (e.getClickCount() == 1) {
+                if (e.getClickCount() == 2) {
                     isSelected = false;
                     this.setBorder(new LineBorder(Color.BLACK, 4));
                     start.setVisible(false);
                     end.setVisible(false);
                     this.repaint();
-                } else {
-                    this.addKeyListener(new KeyListener() {
-                        @Override
-                        public void keyPressed(KeyEvent e)  /*删除*/ {
-                            if (e.getKeyCode() == KeyEvent.VK_DELETE) {
-                                start.setVisible(false);
-                                end.setVisible(false);
-                                jContentPane.setVisible(false);
-                                repaint();
-                            }
-                        }
-
-                        @Override
-                        public void keyReleased(KeyEvent e) {
-                        }
-
-                        @Override
-                        public void keyTyped(KeyEvent e) {
-                        }
-                    });
                 }
             }
         }
 
         @Override
-        public void mouseEntered(MouseEvent e)  /*鼠标进入哪个位点区域*/ {
+        public void mouseEntered(MouseEvent e) {/*鼠标进入哪个位点区域*/
             if (isSelected) {
                 if (e.getComponent() == start) {
                     setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
@@ -484,7 +453,7 @@ public class Mouse extends JPanel {
         }
 
         @Override
-        public void mouseReleased(MouseEvent e)  /*防止鼠标在拖动过程中移出范围*/ {
+        public void mouseReleased(MouseEvent e) {/*防止鼠标在拖动过程中移出范围*/
             if (isSelected) {
                 if (getCursor().getType() != Cursor.DEFAULT_CURSOR) {
                     setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
@@ -494,4 +463,7 @@ public class Mouse extends JPanel {
 
     }
 
+    public static void main(String[] args) {
+        Mouse mouse = new Mouse();
+    }
 }
