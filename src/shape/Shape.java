@@ -12,6 +12,7 @@ public abstract class Shape {
     public int[] xPoint;
     public int[] yPoint;
     public int Height, Width;
+    public int n;
     public String name;
     public Color color;
 
@@ -40,7 +41,15 @@ public abstract class Shape {
         this.color = color;
     }
 
-    public Shape(int[] x1, int[] y1, String name, Color color) {
+    public Shape(int[] xPoint, int[] yPoint, int n, String name, Color color) {
+        this.xPoint=xPoint;
+        this.yPoint=yPoint;
+        this.n=n;
+        this.name=name;
+        this.color=color;
+    }
+
+    public Shape(int[] xPoint, int[] yPoint, String name, Color color) {
     }
 
     public void drawShape(Graphics g) {

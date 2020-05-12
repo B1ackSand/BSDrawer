@@ -14,7 +14,6 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.*;
 
 
-
 public class DrawListener implements MouseListener, MouseMotionListener, ActionListener {
 
     private int x1, y1, x2, y2, x3, y3, x4, y4, x5, y5;
@@ -76,34 +75,31 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
             y2 = e.getY();
             // 绘制直线
             if ("ROUNDRECT".equals(name)) {
-                g.drawRoundRect(x2,y2,200,50, 30, 30);
+                g.drawRoundRect(x2, y2, 200, 50, 30, 30);
                 Shape roundRect = new RoundRect(x1, y1, x2, y2, 30, 30, name, color);
                 shapeArray[index++] = roundRect;
 
             }
             if ("NORMALRECT".equals(name)) {
-                g.drawRect(x2, y2,200 ,50 );
+                g.drawRect(x2, y2, 200, 50);
                 Shape rect = new NormalRect(x1, y1, x2, y2, name, color);
                 shapeArray[index++] = rect;
             }
             if ("DIAMOND".equals(name)) {
-                g.drawOval(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2 - x1), Math.abs(y2 - y1));
-                //Shape diamond = new Diamond(x1, y1, x2, y2, name, color);
-                //shapeArray[index++] = diamond;
+                int[] xPoints = {x2, x2 + 60, x2 + 120, x2 + 60};
+                int[] yPoints = {y2, y2 - 40, y2, y2 + 40};
+                g.drawPolygon(xPoints, yPoints, 4);
+                Shape diamond = new Diamond(xPoints, yPoints, 4, name, color);
+                shapeArray[index++] = diamond;
             }
 
             if ("PARALLELOGRAM".equals(name) && flag1) {
-                g.drawLine(x1, y1, x2, y2);
+                int[] xPoints = {x2 + 20, x2 + 80, x2 + 60, x2};
+                int[] yPoints = {y2, y2, y2 + 40, y2 + 40};
+                g.drawPolygon(xPoints, yPoints, 4);
+                Shape parallelogram = new Parallelogram(xPoints, yPoints, 4, name, color);
+                shapeArray[index++] = parallelogram;
 
-                Shape line = new Line(x1, y1, x2, y2, name, color);
-                shapeArray[index++] = line;
-
-                x3 = x1;
-                y3 = y1;
-                x4 = x2;
-                y4 = y2;
-
-                flag1 = false;
             }
             if ("ARROWLINE".equals(name) && flag1) {
                 g.drawLine(x1, y1, x2, y2);
@@ -112,10 +108,10 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
             }
             if ("CONNECTOR".equals(name) && flag1) {
                 g.drawArc(x2, y2, 10, 10, 0, 360);
-                Shape connector = new Connector(x1, y1, x2, y2, 10,10,name, color);
+                Shape connector = new Connector(x1, y1, x2, y2, 10, 10, name, color);
                 shapeArray[index++] = connector;
             }
-            if("CURVERECT".equals(name)&&flag1){
+            if ("CURVERECT".equals(name) && flag1) {
 
             }
         }
@@ -167,7 +163,17 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
 
             }
         }
+        // 多边形切换设置
+        flag1 = true;
+        // 点击非清屏按钮，先完成多边形绘制
+        if (!"".equals(e.getActionCommand()) && flag2) {
+            g.drawLine(x5, y5, x3, y3);
 
+            Shape line = new Line(x5, y5, x3, y3, name, color);
+            shapeArray[index++] = line;
+
+            flag2 = false;
+        }
 
     }
 }

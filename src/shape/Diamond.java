@@ -12,9 +12,11 @@ public class Diamond extends Shape {
 
     ;
 
-    public Diamond(int[] xPoint, int[] yPoint, String name, Color color) {
-        super(xPoint, yPoint, name, color);
+    public Diamond(int[] xPoint, int[] yPoint, int n,String name, Color color) {
+        super(xPoint, yPoint, n,name, color);
     }
+
+
 
     @Override
     public void drawShape(Graphics g) {

@@ -12,8 +12,8 @@ public class Parallelogram extends Shape {
 
     ;
 
-    public Parallelogram(int[] xPoint, int[] yPoint, String name, Color color) {
-        super(xPoint, yPoint, name, color);
+    public Parallelogram(int[] xPoint, int[] yPoint, int n,String name, Color color) {
+        super(xPoint, yPoint, n,name, color);
     }
 
     @Override
