@@ -13,6 +13,8 @@ public abstract class Shape {
     public int[] yPoint;
     public int Height, Width;
     public int n;
+    int arcWidth;
+    int arcHeight;
     public String name;
     public Color color;
 
@@ -49,7 +51,13 @@ public abstract class Shape {
         this.color=color;
     }
 
-    public Shape(int[] xPoint, int[] yPoint, String name, Color color) {
+    public Shape(int x1, int y1, int Width,int Height,int arcWidth, int arcHeight) {
+        this.x1=x1;
+        this.y1=y1;
+        this.Width=Width;
+        this.Height=Height;
+        this.arcWidth=arcWidth;
+        this.arcHeight=arcHeight;
     }
 
     public void drawShape(Graphics g) {

@@ -1,8 +1,13 @@
 package gui;
 
+import shape.RoundRect;
+import shape.Shape;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -13,7 +18,7 @@ import static common.Path.*;
  * @author BlackSand
  */
 public class MouseComponent extends JComponent implements MouseMotionListener {
-    private static int n=0;
+    private static int n = 0;
     private Rectangle rect;
     private boolean isTopLeft;
     private boolean isTop;
@@ -24,6 +29,10 @@ public class MouseComponent extends JComponent implements MouseMotionListener {
     private boolean isBottomLeft;
     private boolean isDrag;
     private boolean isLeft;
+    private Graphics g;
+    private int x,y;
+    private Shape[] shapeArray;
+    private int index = 0;
     //矩形最小宽和高为多少
     private final static int RESIZE_WIDTH = 5;
     private final static int MIN_WIDTH = 20;
@@ -34,11 +43,13 @@ public class MouseComponent extends JComponent implements MouseMotionListener {
     //所有的矩形
     private ArrayList<Rectangle> squares;
 
+
     public MouseComponent() {
         this.squares = new ArrayList<Rectangle>();
         this.rect = null;
         addMouseMotionListener(this);
-        this.addMouseListener(new MouseHandle());// 监听鼠标点击事件
+        // 监听鼠标点击事件
+        this.addMouseListener(new MouseHandle());
         //this.addMouseMotionListener(new MouseMotionHandler());// 监听鼠标移动事件
     }
 
@@ -52,22 +63,29 @@ public class MouseComponent extends JComponent implements MouseMotionListener {
         return null;
     }
 
-    // 绘制矩形
+
+    // 绘制图形，矩形
     @Override
     public void paintComponent(Graphics g) {
+        super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        for (Rectangle r : squares) {
-            g2.draw(r);
+        if (n == 2) {
+            for (Rectangle r : squares) {
+                g2.draw(r);
+            }
         }
     }
 
-    // 添加矩形到屏幕
+    // 添加图形，矩形到屏幕
     public void add(Point2D p) {
-        double x = p.getX();
-        double y = p.getY();
-        rect = new Rectangle((int) (x - SIDELENGTH / 2), (int) (y - SIDELENGTH / 2), SIDELENGTH, SIDELENGTH);
-        squares.add(rect);
-        repaint();
+
+        if (n == 2) {
+            double x = p.getX();
+            double y = p.getY();
+            rect = new Rectangle((int) (x - SIDELENGTH / 2), (int) (y - SIDELENGTH / 2), SIDELENGTH, SIDELENGTH);
+            squares.add(rect);
+            repaint();
+        }
     }
 
     // 删除矩形
@@ -95,10 +113,14 @@ public class MouseComponent extends JComponent implements MouseMotionListener {
 
         @Override
         public void mousePressed(MouseEvent e) {
-            if(n==1){
-
+            if (n == 1) {
+                int x=e.getX();
+                int y=e.getY();
+                g.drawRoundRect(x, y, 200, 50, 30, 30);
+                Shape roundRect = new RoundRect(x, y, 200, 50, 30, 30);
+                shapeArray[index++] = roundRect;
             }
-            if(n==2) {
+            if (n == 2) {
                 rect = find(e.getPoint());
                 // 当前位置没有矩形则绘制
                 if (rect == null) {
@@ -246,6 +268,8 @@ public class MouseComponent extends JComponent implements MouseMotionListener {
     }
 
 
+
+
     public static void main(String[] args) {
 
         /**
@@ -311,37 +335,37 @@ public class MouseComponent extends JComponent implements MouseMotionListener {
         //按钮设置监听器
         jb1.addActionListener(e -> {
             // 进行逻辑处理即可
-            n=1;
+            n = 1;
             System.out.println("n=1");
         });
         jb2.addActionListener(e -> {
             // 进行逻辑处理即可
-            n=2;
+            n = 2;
             System.out.println("n=2");
         });
         jb3.addActionListener(e -> {
             // 进行逻辑处理即可
-            n=3;
+            n = 3;
             System.out.println("n=3");
         });
         jb4.addActionListener(e -> {
             // 进行逻辑处理即可
-            n=4;
+            n = 4;
             System.out.println("n=4");
         });
         jb5.addActionListener(e -> {
             // 进行逻辑处理即可
-            n=5;
+            n = 5;
             System.out.println("n=5");
         });
         jb6.addActionListener(e -> {
             // 进行逻辑处理即可
-            n=6;
+            n = 6;
             System.out.println("n=6");
         });
         jb7.addActionListener(e -> {
             // 进行逻辑处理即可
-            n=7;
+            n = 7;
             System.out.println("n=7");
         });
 

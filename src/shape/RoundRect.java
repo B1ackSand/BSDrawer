@@ -11,9 +11,10 @@ public class RoundRect extends Shape {
 
     ;
 
-    public RoundRect(int x1, int y1, int Width,int Height,int arcWidth, int arcHeight, String name, Color color) {
-        super(x1, y1, arcWidth, arcHeight, name, color);
+    public RoundRect(int x1, int y1, int Width, int Height, int arcWidth, int arcHeight) {
+        super(x1, y1, Width, Height, arcWidth, arcHeight);
     }
+
 
     @Override
     public void drawShape(Graphics g) {
