@@ -13,6 +13,7 @@ import static common.Path.*;
  * @author BlackSand
  */
 public class MouseComponent extends JComponent implements MouseMotionListener {
+    private static int n=0;
     private Rectangle rect;
     private boolean isTopLeft;
     private boolean isTop;
@@ -94,10 +95,15 @@ public class MouseComponent extends JComponent implements MouseMotionListener {
 
         @Override
         public void mousePressed(MouseEvent e) {
-            rect = find(e.getPoint());
-            // 当前位置没有矩形则绘制
-            if (rect == null) {
-                add(e.getPoint());
+            if(n==1){
+
+            }
+            if(n==2) {
+                rect = find(e.getPoint());
+                // 当前位置没有矩形则绘制
+                if (rect == null) {
+                    add(e.getPoint());
+                }
             }
         }
 
@@ -270,6 +276,7 @@ public class MouseComponent extends JComponent implements MouseMotionListener {
 
         p1.setPreferredSize(new Dimension(300, 700));
         p1.setBackground(Color.white);
+
         //创建图形按钮
         JButton jb1 = new JButton("ROUNDRECT", new ImageIcon(ROUNDRECT));
         JButton jb2 = new JButton("NORMALRECT", new ImageIcon(NORMALRECT));
@@ -280,22 +287,63 @@ public class MouseComponent extends JComponent implements MouseMotionListener {
         JButton jb7 = new JButton("CURVERECT", new ImageIcon(CURVERECT));
 
         //添加图片按钮
-        p1.add(jb1);
-        p1.add(jb2);
-        p1.add(jb3);
-        p1.add(jb4);
-        p1.add(jb5);
-        p1.add(jb6);
-        p1.add(jb7);
+        {
+            p1.add(jb1);
+            p1.add(jb2);
+            p1.add(jb3);
+            p1.add(jb4);
+            p1.add(jb5);
+            p1.add(jb6);
+            p1.add(jb7);
+        }
 
         //设置按钮背景颜色
-        jb1.setBackground(Color.white);
-        jb2.setBackground(Color.white);
-        jb3.setBackground(Color.white);
-        jb4.setBackground(Color.white);
-        jb5.setBackground(Color.white);
-        jb6.setBackground(Color.white);
-        jb7.setBackground(Color.white);
+        {
+            jb1.setBackground(Color.white);
+            jb2.setBackground(Color.white);
+            jb3.setBackground(Color.white);
+            jb4.setBackground(Color.white);
+            jb5.setBackground(Color.white);
+            jb6.setBackground(Color.white);
+            jb7.setBackground(Color.white);
+        }
+
+        //按钮设置监听器
+        jb1.addActionListener(e -> {
+            // 进行逻辑处理即可
+            n=1;
+            System.out.println("n=1");
+        });
+        jb2.addActionListener(e -> {
+            // 进行逻辑处理即可
+            n=2;
+            System.out.println("n=2");
+        });
+        jb3.addActionListener(e -> {
+            // 进行逻辑处理即可
+            n=3;
+            System.out.println("n=3");
+        });
+        jb4.addActionListener(e -> {
+            // 进行逻辑处理即可
+            n=4;
+            System.out.println("n=4");
+        });
+        jb5.addActionListener(e -> {
+            // 进行逻辑处理即可
+            n=5;
+            System.out.println("n=5");
+        });
+        jb6.addActionListener(e -> {
+            // 进行逻辑处理即可
+            n=6;
+            System.out.println("n=6");
+        });
+        jb7.addActionListener(e -> {
+            // 进行逻辑处理即可
+            n=7;
+            System.out.println("n=7");
+        });
 
         jmb = new JMenuBar();
         menu1 = new JMenu("文件(F)");
