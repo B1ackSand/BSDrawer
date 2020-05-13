@@ -1,10 +1,7 @@
 package gui;
 
-import shape.Connector;
-import shape.Line;
-import shape.NormalRect;
-import shape.Shape;
 
+import shape.Shape;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -51,7 +48,6 @@ public class Gui extends JPanel {
         //画板
         JLabel p2 = new JLabel();
 
-        p1.setLayout(new GridLayout(7, 1));
         p1.setLayout(new GridLayout(7, 1));
         jf.add(p1, BorderLayout.WEST);
         jf.add(this, BorderLayout.CENTER);
