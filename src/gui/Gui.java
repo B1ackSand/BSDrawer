@@ -1,15 +1,24 @@
 package gui;
 
 
+import javafx.stage.FileChooser;
 import shape.Shape;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 import static common.Path.*;
 
 /**
- * @author Gillo
+ * @author Gillo, BlackSand
  */
 public class Gui extends JPanel {
 
@@ -17,6 +26,7 @@ public class Gui extends JPanel {
      * 左侧图标
      */
     private Shape[] shapeParameter = new Shape[20000];
+    private JFileChooser fileChooser = new JFileChooser();
 
     /**
      * 菜单
@@ -33,6 +43,7 @@ public class Gui extends JPanel {
     JMenuItem file, project;
     JTextArea jta;
     Color ButtonColor = new Color(255, 255, 255);
+
 
     public Gui() {
         //名字
@@ -103,7 +114,6 @@ public class Gui extends JPanel {
         jb7.addActionListener(dl);
 
 
-
         jmb = new JMenuBar();
         menu1 = new JMenu("文件(F)");
         // 设置助记符
@@ -146,9 +156,48 @@ public class Gui extends JPanel {
         // 将菜单添加到窗体上并使窗口可见
         jf.setJMenuBar(jmb);
         jf.setVisible(true);
+        jf.setResizable(false);
         Graphics g = this.getGraphics();
         dl.setGr(g);
         dl.setSp(shapeParameter);
+
+        //设置图片保存按钮监听
+        item3.addActionListener(new ActionListener() {
+            //图片保存可选择为JPG和PNG格式和路径
+            @Override
+            public void actionPerformed(ActionEvent a) {
+                //缓存进BufferedImage
+                BufferedImage myImage = null;
+                // 创建文件选择对话框
+                fileChooser = new JFileChooser();
+                //设置文件过滤器，只列出JPG或GIF格式的图片
+                FileFilter filter = new FileNameExtensionFilter("图像文件（.JPG/.PNG）", ".jpg", ".png");
+                fileChooser.setFileFilter(filter);
+
+                //使用Robot类截取屏幕一部分的方式进行图片的保存，因为直接使用Panel中的导出图片不知为何会无法导出图形
+                try {
+                    myImage = new Robot().createScreenCapture(
+                            new Rectangle(jf.getX() + 307, jf.getY() + 54, jf.getWidth() - 307, jf.getHeight() - 54));
+                    int result = fileChooser.showSaveDialog(null);
+                    //按下保存键后
+                    if (result == JFileChooser.APPROVE_OPTION) {
+                        File file_path = fileChooser.getSelectedFile();
+                        if (file_path.getPath().endsWith(".jpg")) {
+                            System.out.println(file_path.getPath());
+                            ImageIO.write(myImage, "jpg", new File(file_path.getPath()));
+                        } else if (file_path.getPath().endsWith(".png")) {
+                            System.out.println(file_path.getPath());
+                            ImageIO.write(myImage, "png", new File(file_path.getPath()));
+                        }
+                    }
+
+                    //异常捕获
+                } catch (AWTException | IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        });
     }
 
     public static void main(String[] args) {
