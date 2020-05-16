@@ -39,7 +39,7 @@ public class wenjian extends JFrame{
 	public void saveFile() {
 		JFileChooser fileChooser= new JFileChooser();
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-		int result =fileChooser.showSaveDialog(this);
+		int result =fileChooser.showSaveDialog(null);
 		if(result==JFileChooser.CANCEL_OPTION) {
 			return;
 		}
@@ -75,7 +75,7 @@ public class wenjian extends JFrame{
 	public void openFile() {
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-		int result = fileChooser.showOpenDialog(this);
+		int result = fileChooser.showOpenDialog(null);
 		if(result==JFileChooser.CANCEL_OPTION) {
 			return;
 		}

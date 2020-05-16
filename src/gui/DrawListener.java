@@ -5,7 +5,6 @@ import shape.*;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
@@ -68,10 +67,9 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
     }
 
 
-    //鼠标释放
     @Override
     public void mouseReleased(java.awt.event.MouseEvent e) {
-
+        //鼠标释放创建图形
         {
             x2 = e.getX();
             y2 = e.getY();
@@ -109,7 +107,7 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
                 shapeArray[index++] = line;
             }
             if ("CONNECTOR".equals(name) && flag1) {
-                g.drawArc(x1-10, y1-10, 10, 10, 0, 360);
+                g.drawArc(x1 - 10, y1 - 10, 10, 10, 0, 360);
                 Shape connector = new Connector(x1, y1, x2, y2, 10, 10, name, color);
                 shapeArray[index++] = connector;
             }
@@ -128,11 +126,10 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
     public void mouseExited(java.awt.event.MouseEvent e) {
     }
 
-    //鼠标拖动
 
     @Override
     public void mouseDragged(java.awt.event.MouseEvent e) {
-
+        //鼠标拖动
     }
 
     @Override
@@ -168,13 +165,12 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
         }
         // 多边形切换设置
         flag1 = true;
-        // 点击非清屏按钮，先完成多边形绘制
+        // 点击非清屏按钮，先完成直线绘画
         if (!"".equals(e.getActionCommand()) && flag2) {
             g.drawLine(x5, y5, x3, y3);
 
             Shape line = new Line(x5, y5, x3, y3, name, color);
             shapeArray[index++] = line;
-
             flag2 = false;
         }
 

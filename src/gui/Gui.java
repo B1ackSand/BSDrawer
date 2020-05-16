@@ -1,14 +1,12 @@
 package gui;
 
 
-import javafx.stage.FileChooser;
 import shape.Shape;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -22,10 +20,6 @@ import static common.Path.*;
  */
 public class Gui extends JPanel {
 
-    /**
-     * 左侧图标
-     */
-    private Shape[] shapeParameter = new Shape[20000];
     private JFileChooser fileChooser = new JFileChooser();
 
     /**
@@ -33,29 +27,26 @@ public class Gui extends JPanel {
      */
     JMenuBar jmb;
     JMenu menu1, menu2, menu3;
-    JMenuItem item1,item2, item3, item4;
+    JMenuItem item1, item2, item3, item4;
+    Color buttonColor = new Color(255, 255, 255);
 
     /**
-     * 二级菜单
+     * GUI设计
      * *
      **/
-    JTextArea jta;
-    Color ButtonColor = new Color(255, 255, 255);
-
-
     public Gui() {
         //名字
         JFrame jf = new JFrame("BSDrawer——流程图绘制程序");
         //窗口大小
         jf.setSize(1080, 660);
         jf.setLocationRelativeTo(null);
-        jf.setDefaultCloseOperation(3);
+        jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
         //绘图按钮面板
         JPanel p1 = new JPanel();
         //画板
-        JLabel p2 = new JLabel();
+        //JLabel p2 = new JLabel();
 
         p1.setLayout(new GridLayout(7, 1));
         jf.add(p1, BorderLayout.WEST);
@@ -82,7 +73,7 @@ public class Gui extends JPanel {
         JButton jb4 = new JButton("PARALLELOGRAM", new ImageIcon(PARALLELOGRAM));
         JButton jb5 = new JButton("ARROWLINE", new ImageIcon(ARROWLINE));
         JButton jb6 = new JButton("CONNECTOR", new ImageIcon(CONNECTOR));
-        JButton jb7 = new JButton("CURVERECT",new ImageIcon(CURVERECT));
+        JButton jb7 = new JButton("CURVERECT", new ImageIcon(CURVERECT));
 
         //添加图片按钮
         p1.add(jb1);
@@ -94,13 +85,13 @@ public class Gui extends JPanel {
         p1.add(jb7);
 
         //设置按钮背景颜色
-        jb1.setBackground(ButtonColor);
-        jb2.setBackground(ButtonColor);
-        jb3.setBackground(ButtonColor);
-        jb4.setBackground(ButtonColor);
-        jb5.setBackground(ButtonColor);
-        jb6.setBackground(ButtonColor);
-        jb7.setBackground(ButtonColor);
+        jb1.setBackground(buttonColor);
+        jb2.setBackground(buttonColor);
+        jb3.setBackground(buttonColor);
+        jb4.setBackground(buttonColor);
+        jb5.setBackground(buttonColor);
+        jb6.setBackground(buttonColor);
+        jb7.setBackground(buttonColor);
 
         //按钮设置监听器
         jb1.addActionListener(dl);
@@ -121,8 +112,8 @@ public class Gui extends JPanel {
         menu3 = new JMenu("帮助(H)");
         menu3.setMnemonic('H');
 
-        item1=new JMenuItem("新建(N)");
-        item2 = new JMenuItem("打开(O)", new ImageIcon("images\\77.png"));
+        item1 = new JMenuItem("新建(N)");
+        item2 = new JMenuItem("打开(O)");
         item3 = new JMenuItem("保存图片(S)");
         item4 = new JMenuItem("退出(X)");
 
@@ -155,44 +146,50 @@ public class Gui extends JPanel {
         jf.setResizable(false);
         Graphics g = this.getGraphics();
         dl.setGr(g);
+        Shape[] shapeParameter = new Shape[20000];
         dl.setSp(shapeParameter);
 
         //设置保存图片按钮监听
-        item3.addActionListener(new ActionListener() {
-            //图片保存可选择为JPG和PNG格式和路径
-            @Override
-            public void actionPerformed(ActionEvent a) {
-                //缓存进BufferedImage
-                BufferedImage myImage = null;
-                // 创建文件选择对话框
-                fileChooser = new JFileChooser();
-                //设置文件过滤器，只列出JPG或GIF格式的图片
-                FileFilter filter = new FileNameExtensionFilter("图像文件（.JPG/.PNG）", ".jpg", ".png");
-                fileChooser.setFileFilter(filter);
+        //图片保存可选择为JPG和PNG格式和路径
+        item3.addActionListener(a -> {
 
-                //使用Robot类截取屏幕一部分的方式进行图片的保存，因为直接使用Panel中的导出图片不知为何会无法导出图形
-                try {
-                    myImage = new Robot().createScreenCapture(
-                            new Rectangle(jf.getX() + 307, jf.getY() + 54, jf.getWidth() - 310, jf.getHeight() - 57));
-                    int result = fileChooser.showSaveDialog(null);
-                    //按下保存键后
-                    if (result == JFileChooser.APPROVE_OPTION) {
-                        File file_path = fileChooser.getSelectedFile();
-                        if (file_path.getPath().endsWith(".jpg")) {
-                            System.out.println(file_path.getPath());
-                            ImageIO.write(myImage, "jpg", new File(file_path.getPath()));
-                        } else if (file_path.getPath().endsWith(".png")) {
-                            System.out.println(file_path.getPath());
-                            ImageIO.write(myImage, "png", new File(file_path.getPath()));
-                        }
+            //缓存进BufferedImage
+            BufferedImage myImage;
+
+            // 创建文件选择对话框
+            fileChooser = new JFileChooser();
+
+            //设置文件过滤器，只列出JPG或GIF格式的图片
+            FileFilter filter = new FileNameExtensionFilter("Image（*.jpg, *.png）(文件名不加入扩展名默认为JPG格式)", ".jpg", ".png");
+            fileChooser.addChoosableFileFilter(filter);
+            fileChooser.setFileFilter(filter);
+
+            //另方向使用Robot类抓屏一部分的方式进行图片的保存，因为直接使用Panel类中的导出图片不知为何只能导出空JFrame
+            try {
+                myImage = new Robot().createScreenCapture(
+                        //设定区域为绘图区域大小
+                        new Rectangle(jf.getX() + 307, jf.getY() + 54, jf.getWidth() - 310, jf.getHeight() - 57));
+                int result = fileChooser.showSaveDialog(null);
+
+                //如果按下保存键/确认键
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File file_path = fileChooser.getSelectedFile();
+                    if (file_path.getPath().endsWith(".jpg")) {
+                        System.out.println(file_path.getPath());
+                        ImageIO.write(myImage, "jpg", new File(file_path.getPath()));
+                    } else if (file_path.getPath().endsWith(".png")) {
+                        System.out.println(file_path.getPath());
+                        ImageIO.write(myImage, "png", new File(file_path.getPath()));
+                    } else if (!file_path.getPath().endsWith(".jpg") && !file_path.getPath().endsWith(".png")) {
+                        System.out.println(file_path.getPath());
+                        ImageIO.write(myImage, "jpg", new File(file_path.getPath() + ".jpg"));
                     }
-
-                    //异常捕获
-                } catch (AWTException | IOException e) {
-                    e.printStackTrace();
                 }
-            }
 
+                //异常捕获
+            } catch (AWTException | IOException e) {
+                e.printStackTrace();
+            }
         });
     }
 
