@@ -33,21 +33,19 @@ public class Gui extends JPanel {
      */
     JMenuBar jmb;
     JMenu menu1, menu2, menu3;
-    JMenuItem item2, item3, item4, item5;
+    JMenuItem item1,item2, item3, item4;
 
     /**
      * 二级菜单
      * *
      **/
-    JMenu xinjian;
-    JMenuItem file, project;
     JTextArea jta;
     Color ButtonColor = new Color(255, 255, 255);
 
 
     public Gui() {
         //名字
-        JFrame jf = new JFrame("流程图绘制程序");
+        JFrame jf = new JFrame("BSDrawer——流程图绘制程序");
         //窗口大小
         jf.setSize(1080, 660);
         jf.setLocationRelativeTo(null);
@@ -84,7 +82,7 @@ public class Gui extends JPanel {
         JButton jb4 = new JButton("PARALLELOGRAM", new ImageIcon(PARALLELOGRAM));
         JButton jb5 = new JButton("ARROWLINE", new ImageIcon(ARROWLINE));
         JButton jb6 = new JButton("CONNECTOR", new ImageIcon(CONNECTOR));
-        JButton jb7 = new JButton(new ImageIcon(CURVERECT));
+        JButton jb7 = new JButton("CURVERECT",new ImageIcon(CURVERECT));
 
         //添加图片按钮
         p1.add(jb1);
@@ -118,35 +116,33 @@ public class Gui extends JPanel {
         menu1 = new JMenu("文件(F)");
         // 设置助记符
         menu1.setMnemonic('F');
-        menu2 = new JMenu("编辑(E)");
+        menu2 = new JMenu("格式(T)");
         menu2.setMnemonic('E');
         menu3 = new JMenu("帮助(H)");
         menu3.setMnemonic('H');
 
-        // item1=new JMenuItem(“新建”)
-        xinjian = new JMenu("新建");
-        file = new JMenuItem("文件");
-        project = new JMenuItem("工程");
+        item1=new JMenuItem("新建(N)");
+        item2 = new JMenuItem("打开(O)", new ImageIcon("images\\77.png"));
+        item3 = new JMenuItem("保存图片(S)");
+        item4 = new JMenuItem("退出(X)");
 
-        item2 = new JMenuItem("打开", new ImageIcon("images\\77.png"));
-        item3 = new JMenuItem("保存(S)");
-        item3.setMnemonic('S');
+
         // 给菜单选项添加快捷方式
+        item1.setMnemonic('N');
+        item1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,
+                InputEvent.ALT_MASK));
+        item2.setMnemonic('O');
+        item2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
+                InputEvent.ALT_MASK));
+        item3.setMnemonic('S');
         item3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
                 InputEvent.ALT_MASK));
-        item4 = new JMenuItem("另存为");
-        item5 = new JMenuItem("退出");
-        jta = new JTextArea();
-        // 将菜单添加到菜单栏上
-        xinjian.add(file);
-        xinjian.add(project);
 
-        menu1.add(xinjian);
+        menu1.add(item1);
         menu1.add(item2);
         menu1.add(item3);
-        menu1.add(item4);
         menu1.addSeparator();// 添加分割线
-        menu1.add(item5);
+        menu1.add(item4);
 
         // 将菜单添加到菜单条上
         jmb.add(menu1);
@@ -161,7 +157,7 @@ public class Gui extends JPanel {
         dl.setGr(g);
         dl.setSp(shapeParameter);
 
-        //设置图片保存按钮监听
+        //设置保存图片按钮监听
         item3.addActionListener(new ActionListener() {
             //图片保存可选择为JPG和PNG格式和路径
             @Override
@@ -177,7 +173,7 @@ public class Gui extends JPanel {
                 //使用Robot类截取屏幕一部分的方式进行图片的保存，因为直接使用Panel中的导出图片不知为何会无法导出图形
                 try {
                     myImage = new Robot().createScreenCapture(
-                            new Rectangle(jf.getX() + 307, jf.getY() + 54, jf.getWidth() - 307, jf.getHeight() - 54));
+                            new Rectangle(jf.getX() + 307, jf.getY() + 54, jf.getWidth() - 310, jf.getHeight() - 57));
                     int result = fileChooser.showSaveDialog(null);
                     //按下保存键后
                     if (result == JFileChooser.APPROVE_OPTION) {
@@ -201,6 +197,6 @@ public class Gui extends JPanel {
     }
 
     public static void main(String[] args) {
-        Gui gui1 = new Gui();
+        Gui gui = new Gui();
     }
 }
