@@ -173,7 +173,7 @@ public class Gui extends JPanel {
 
                 //如果按下保存键/确认键
                 if (result == JFileChooser.APPROVE_OPTION) {
-                    File file_path = fileChooser.getSelectedFile();
+                    File file_path = fileChooser.getSelectedFile(); 
                     if (file_path.getPath().endsWith(".jpg")) {
                         System.out.println(file_path.getPath());
                         ImageIO.write(myImage, "jpg", new File(file_path.getPath()));
