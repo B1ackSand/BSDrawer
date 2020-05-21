@@ -2,6 +2,7 @@ package gui;
 
 
 import shape.Shapes;
+import gui.DrawListener;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -27,8 +28,8 @@ public class Gui extends JPanel {
      */
     JMenuBar jmb;
     JMenu menu1, menu2, menu3;
-    JMenuItem item1, item2, item3, item4, item5, item6;
-    Color buttonColor = new Color(255, 255, 255);
+    JMenuItem item1, item2, item3, item4, item5, item6, item7;
+    Color buttonColor = new Color(242, 242, 242);
 
     /**
      * GUI设计
@@ -45,12 +46,14 @@ public class Gui extends JPanel {
 
         //绘图按钮面板
         JPanel p1 = new JPanel();
-        //画板
-        //JLabel p2 = new JLabel();
+        //文本框按钮面板区域
+        JLabel p2 = new JLabel();
 
-        p1.setLayout(new GridLayout(7, 1));
+        p1.setLayout(new GridLayout(9, 1));
+        p2.setLayout(new GridLayout(1, 2));
         jf.add(p1, BorderLayout.WEST);
         jf.add(this, BorderLayout.CENTER);
+        p1.add(p2, BorderLayout.SOUTH);
 
         //设置jf
         this.setPreferredSize(new Dimension(900, 600));
@@ -71,9 +74,10 @@ public class Gui extends JPanel {
         JButton jb2 = new JButton("NORMALRECT", new ImageIcon(NORMALRECT));
         JButton jb3 = new JButton("DIAMOND", new ImageIcon(DIAMOND));
         JButton jb4 = new JButton("PARALLELOGRAM", new ImageIcon(PARALLELOGRAM));
-        JButton jb5 = new JButton("ARROWLINE", new ImageIcon(LINE));
+        JButton jb5 = new JButton("LINE", new ImageIcon(LINE));
         JButton jb6 = new JButton("CONNECTOR", new ImageIcon(CONNECTOR));
-        JButton jb7 = new JButton("CURVERECT", new ImageIcon(BROKENLINE));
+        JButton jb7 = new JButton("BROKENLINE", new ImageIcon(BROKENLINE));
+        JButton jb8 = new JButton("SETSTR", new ImageIcon(SETSTR));
 
         //添加图片按钮
         p1.add(jb1);
@@ -83,6 +87,7 @@ public class Gui extends JPanel {
         p1.add(jb5);
         p1.add(jb6);
         p1.add(jb7);
+        p1.add(jb8);
 
         //设置按钮背景颜色
         jb1.setBackground(buttonColor);
@@ -92,6 +97,7 @@ public class Gui extends JPanel {
         jb5.setBackground(buttonColor);
         jb6.setBackground(buttonColor);
         jb7.setBackground(buttonColor);
+        jb8.setBackground(buttonColor);
 
         //按钮设置监听器
         jb1.addActionListener(dl);
@@ -101,7 +107,22 @@ public class Gui extends JPanel {
         jb5.addActionListener(dl);
         jb6.addActionListener(dl);
         jb7.addActionListener(dl);
+        jb8.addActionListener(dl);
 
+        //创建文本框和提交按钮
+        final JTextField textField = new JTextField("", 0);
+        textField.setFont(new Font(null, Font.PLAIN, 16));
+        p2.add(textField);
+
+        //提交按钮监听
+        JButton strbtn = new JButton("提交");
+        strbtn.setFont(new Font(null, Font.PLAIN, 15));
+        strbtn.setBackground(buttonColor);
+        strbtn.addActionListener(a -> {
+            DrawListener.text = textField.getText();
+            System.out.println("提交: " + textField.getText());
+        });
+        p2.add(strbtn);
 
         jmb = new JMenuBar();
         menu1 = new JMenu("文件(F)");
@@ -118,6 +139,7 @@ public class Gui extends JPanel {
         item4 = new JMenuItem("退出(X)");
         item5 = new JMenuItem("执行拖动");
         item6 = new JMenuItem("取消拖动");
+        item7 = new JMenuItem("矩形拖动删除");
 
         // 给菜单选项添加快捷方式
         item1.setMnemonic('N');
@@ -137,6 +159,8 @@ public class Gui extends JPanel {
         menu1.add(item4);
         menu2.add(item5);
         menu2.add(item6);
+        menu2.addSeparator();// 添加分割线
+        menu2.add(item7);
 
         // 将菜单添加到菜单条上
         jmb.add(menu1);
@@ -151,6 +175,7 @@ public class Gui extends JPanel {
         dl.setGr(g);
         Shapes[] shapesParameter = new Shapes[20000];
         dl.setSp(shapesParameter);
+
 
         //设置保存图片按钮监听
         //图片保存可选择为JPG和PNG格式和路径
@@ -198,8 +223,12 @@ public class Gui extends JPanel {
         item5.addActionListener(a -> {
             DrawListener.isDrag = true;
         });
-        item6.addActionListener(a ->{
+        item6.addActionListener(a -> {
             DrawListener.isDrag = false;
+        });
+
+        item1.addActionListener(a -> {
+            DrawListener.clean = true;
         });
     }
 

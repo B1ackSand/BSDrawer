@@ -21,6 +21,5 @@ public class Diamond extends Shapes {
     public void drawShape(Graphics g) {
         g.setColor(color);
         g.drawPolygon(xPoint, yPoint, 4);
-
     }
 }

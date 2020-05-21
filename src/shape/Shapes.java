@@ -60,6 +60,9 @@ public abstract class Shapes {
         this.arcHeight=arcHeight;
     }
 
+    public Shapes(int[] xPoint, int[] yPoint, int n) {
+    }
+
     public void drawShape(Graphics g) {
 
     }

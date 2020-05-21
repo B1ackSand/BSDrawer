@@ -22,9 +22,9 @@ public class Path {
      */
     public static final String PARALLELOGRAM = "src/images/4.png";
     /**
-     *  箭头实线
+     *  实线
      */
-    public static final String LINE = "src/images/7.png";
+    public static final String LINE = "src/images/8.png";
     /**
      *  连接点
      */
@@ -33,4 +33,8 @@ public class Path {
      *  折线
      */
     public static final String BROKENLINE = "src/images/9.png";
+    /**
+     *  文本框
+     */
+    public static final String SETSTR = "src/images/10.png";
 }
