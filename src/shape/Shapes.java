@@ -13,7 +13,7 @@ public abstract class Shapes {
     public int[] yPoint;
     public int Height, Width;
     public int n;
-    public Graphics g;
+    public Graphics g; 
     int arcWidth;
     int arcHeight;
     public Color color;
