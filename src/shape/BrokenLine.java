@@ -16,7 +16,7 @@ public class BrokenLine extends Shapes {
         super(xPoint, yPoint, n);
     }
 
-    
+
     public void drawshape(Graphics g) {
         g.setColor(color);
         g.drawPolyline(xPoint, yPoint, 3);
