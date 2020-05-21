@@ -110,7 +110,7 @@ public class Gui extends JPanel {
         jb8.addActionListener(dl);
 
         //创建文本框和提交按钮
-        final JTextField textField = new JTextField("", 0);
+        final JTextField textField = new JTextField("请修改内容", 8);
         textField.setFont(new Font(null, Font.PLAIN, 16));
         p2.add(textField);
 

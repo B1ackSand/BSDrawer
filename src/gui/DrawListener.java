@@ -102,12 +102,12 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
 
             if ("LINE".equals(name)) {
                 if (Math.abs(y2 - y1) > Math.abs(x2 - x1)) {
-                    g.drawLine(x2, y1, x2, y2);
-                    Shapes line = new Line(x2, y1, x2, y2, name, color);
+                    g.drawLine(x2-5, y1-5, x2-5, y2-5);
+                    Shapes line = new Line(x1, y1, x2, y2, name, color);
                     shapesArray[index++] = line;
                 } else {
-                    g.drawLine(x1, y1, x2, y1);
-                    Shapes line = new Line(x1, y2, x2, y2, name, color);
+                    g.drawLine(x1-5, y1-5, x2-5, y1-5);
+                    Shapes line = new Line(x1, y1, x2, y2, name, color);
                     shapesArray[index++] = line;
                 }
             }
