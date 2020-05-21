@@ -2,7 +2,7 @@ package shape;
 
 import java.awt.*;
 
-public class Connector extends Shape {
+public class Connector extends Shapes {
     public Connector() {
     }
 

@@ -3,7 +3,7 @@ package shape;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Line extends Shape {
+public class Line extends Shapes {
 
     public Line() {
     }

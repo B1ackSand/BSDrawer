@@ -6,16 +6,15 @@ import java.awt.Graphics;
 /**
  * @author BlackSand
  */
-public class Diamond extends Shape {
+public class Diamond extends Shapes {
     public Diamond() {
     }
 
     ;
 
-    public Diamond(int[] xPoint, int[] yPoint, int n,String name, Color color) {
-        super(xPoint, yPoint, n,name, color);
+    public Diamond(int[] xPoint, int[] yPoint, int n, String name, Color color) {
+        super(xPoint, yPoint, n, name, color);
     }
-
 
 
     @Override

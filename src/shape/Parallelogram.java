@@ -6,7 +6,7 @@ import java.awt.Graphics;
 /**
  * @author BlackSand
  */
-public class Parallelogram extends Shape {
+public class Parallelogram extends Shapes {
     public Parallelogram() {
     }
 

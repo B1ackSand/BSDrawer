@@ -24,13 +24,13 @@ public class Path {
     /**
      *  箭头实线
      */
-    public static final String ARROWLINE = "src/images/5.png";
+    public static final String LINE = "src/images/7.png";
     /**
      *  连接点
      */
     public static final String CONNECTOR = "src/images/6.png";
     /**
-     *  单边曲线矩形
+     *  折线
      */
-    public static final String CURVERECT = "src/images/7.png";
+    public static final String BROKENLINE = "src/images/9.png";
 }

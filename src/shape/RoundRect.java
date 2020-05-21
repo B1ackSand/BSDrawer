@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * @author BlackSand
  */
-public class RoundRect extends Shape {
+public class RoundRect extends Shapes {
     public RoundRect() {
     }
 

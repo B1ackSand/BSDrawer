@@ -6,7 +6,7 @@ import java.awt.Graphics;
 /**
  * @author BlackSand
  */
-public class NormalRect extends Shape {
+public class NormalRect extends Shapes {
     public NormalRect() {
     }
 

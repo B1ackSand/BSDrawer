@@ -1,7 +1,7 @@
 package gui;
 
 
-import shape.Shape;
+import shape.Shapes;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -27,7 +27,7 @@ public class Gui extends JPanel {
      */
     JMenuBar jmb;
     JMenu menu1, menu2, menu3;
-    JMenuItem item1, item2, item3, item4;
+    JMenuItem item1, item2, item3, item4, item5, item6;
     Color buttonColor = new Color(255, 255, 255);
 
     /**
@@ -71,9 +71,9 @@ public class Gui extends JPanel {
         JButton jb2 = new JButton("NORMALRECT", new ImageIcon(NORMALRECT));
         JButton jb3 = new JButton("DIAMOND", new ImageIcon(DIAMOND));
         JButton jb4 = new JButton("PARALLELOGRAM", new ImageIcon(PARALLELOGRAM));
-        JButton jb5 = new JButton("ARROWLINE", new ImageIcon(ARROWLINE));
+        JButton jb5 = new JButton("ARROWLINE", new ImageIcon(LINE));
         JButton jb6 = new JButton("CONNECTOR", new ImageIcon(CONNECTOR));
-        JButton jb7 = new JButton("CURVERECT", new ImageIcon(CURVERECT));
+        JButton jb7 = new JButton("CURVERECT", new ImageIcon(BROKENLINE));
 
         //添加图片按钮
         p1.add(jb1);
@@ -107,7 +107,7 @@ public class Gui extends JPanel {
         menu1 = new JMenu("文件(F)");
         // 设置助记符
         menu1.setMnemonic('F');
-        menu2 = new JMenu("格式(T)");
+        menu2 = new JMenu("编辑(C)");
         menu2.setMnemonic('E');
         menu3 = new JMenu("帮助(H)");
         menu3.setMnemonic('H');
@@ -116,7 +116,8 @@ public class Gui extends JPanel {
         item2 = new JMenuItem("打开(O)");
         item3 = new JMenuItem("保存图片(S)");
         item4 = new JMenuItem("退出(X)");
-
+        item5 = new JMenuItem("执行拖动");
+        item6 = new JMenuItem("取消拖动");
 
         // 给菜单选项添加快捷方式
         item1.setMnemonic('N');
@@ -134,6 +135,8 @@ public class Gui extends JPanel {
         menu1.add(item3);
         menu1.addSeparator();// 添加分割线
         menu1.add(item4);
+        menu2.add(item5);
+        menu2.add(item6);
 
         // 将菜单添加到菜单条上
         jmb.add(menu1);
@@ -146,8 +149,8 @@ public class Gui extends JPanel {
         jf.setResizable(false);
         Graphics g = this.getGraphics();
         dl.setGr(g);
-        Shape[] shapeParameter = new Shape[20000];
-        dl.setSp(shapeParameter);
+        Shapes[] shapesParameter = new Shapes[20000];
+        dl.setSp(shapesParameter);
 
         //设置保存图片按钮监听
         //图片保存可选择为JPG和PNG格式和路径
@@ -173,7 +176,7 @@ public class Gui extends JPanel {
 
                 //如果按下保存键/确认键
                 if (result == JFileChooser.APPROVE_OPTION) {
-                    File file_path = fileChooser.getSelectedFile(); 
+                    File file_path = fileChooser.getSelectedFile();
                     if (file_path.getPath().endsWith(".jpg")) {
                         System.out.println(file_path.getPath());
                         ImageIO.write(myImage, "jpg", new File(file_path.getPath()));
@@ -190,6 +193,13 @@ public class Gui extends JPanel {
             } catch (AWTException | IOException e) {
                 e.printStackTrace();
             }
+        });
+
+        item5.addActionListener(a -> {
+            DrawListener.isDrag = true;
+        });
+        item6.addActionListener(a ->{
+            DrawListener.isDrag = false;
         });
     }
 
