@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BSDrawer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/BSDrawer_jar</output-path>
+    <root id="archive" name="BSDrawer.jar">
+      <element id="module-output" name="BSDrawer" />
+    </root>
+  </artifact>
+</component>

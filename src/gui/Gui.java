@@ -70,14 +70,14 @@ public class Gui extends JPanel {
         this.setBackground(Color.white);
 
         //创建图形按钮
-        JButton jb1 = new JButton("ROUNDRECT", new ImageIcon(ROUNDRECT));
-        JButton jb2 = new JButton("NORMALRECT", new ImageIcon(NORMALRECT));
-        JButton jb3 = new JButton("DIAMOND", new ImageIcon(DIAMOND));
-        JButton jb4 = new JButton("PARALLELOGRAM", new ImageIcon(PARALLELOGRAM));
-        JButton jb5 = new JButton("LINE", new ImageIcon(LINE));
-        JButton jb6 = new JButton("CONNECTOR", new ImageIcon(CONNECTOR));
-        JButton jb7 = new JButton("BROKENLINE", new ImageIcon(BROKENLINE));
-        JButton jb8 = new JButton("SETSTR", new ImageIcon(SETSTR));
+        JButton jb1 = new JButton("ROUNDRECT", new ImageIcon(this.getClass().getClassLoader().getResource(ROUNDRECT)));
+        JButton jb2 = new JButton("NORMALRECT", new ImageIcon(this.getClass().getClassLoader().getResource(NORMALRECT)));
+        JButton jb3 = new JButton("DIAMOND", new ImageIcon(this.getClass().getClassLoader().getResource(DIAMOND)));
+        JButton jb4 = new JButton("PARALLELOGRAM", new ImageIcon(this.getClass().getClassLoader().getResource(PARALLELOGRAM)));
+        JButton jb5 = new JButton("LINE", new ImageIcon(this.getClass().getClassLoader().getResource(LINE)));
+        JButton jb6 = new JButton("CONNECTOR", new ImageIcon(this.getClass().getClassLoader().getResource(CONNECTOR)));
+        JButton jb7 = new JButton("BROKENLINE", new ImageIcon(this.getClass().getClassLoader().getResource(BROKENLINE)));
+        JButton jb8 = new JButton("SETSTR", new ImageIcon(this.getClass().getClassLoader().getResource(SETSTR)));
 
         //添加图片按钮
         p1.add(jb1);
