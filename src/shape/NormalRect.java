@@ -12,8 +12,8 @@ public class NormalRect extends Shapes {
 
     ;
 
-    public NormalRect(int x1, int y1, int x2, int y2, String name, Color color) {
-        super(x1, y1, x2, y2, name, color);
+    public NormalRect(int x1, int y1, int x2, int y2) {
+        super(x1, y1, x2, y2);
     }
 
     @Override

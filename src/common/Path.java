@@ -2,7 +2,7 @@ package common;
 
 /**
  * @author BlackSand
- * 定义图标的路径
+ * 定义图标的绝对路径
  */
 public class Path {
     /**

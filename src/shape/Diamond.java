@@ -12,8 +12,8 @@ public class Diamond extends Shapes {
 
     ;
 
-    public Diamond(int[] xPoint, int[] yPoint, int n, String name, Color color) {
-        super(xPoint, yPoint, n, name, color);
+    public Diamond(int[] xPoint, int[] yPoint, int n) {
+        super(xPoint, yPoint, n);
     }
 
 

@@ -2,8 +2,6 @@ package gui;
 
 
 import shape.Shapes;
-import gui.DrawListener;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -13,11 +11,11 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import static common.Path.*;
 
 /**
  * @author Gillo, BlackSand
+ * GUI类为主界面，显示了界面的按钮以及菜单栏等元素
  */
 public class Gui extends JPanel {
 
@@ -28,7 +26,7 @@ public class Gui extends JPanel {
      */
     JMenuBar jmb;
     JMenu menu1, menu2, menu3;
-    JMenuItem item1, item2, item3, item4, item5, item6, item7;
+    JMenuItem item1, item2, item3, item4, item5, item6, item7,item8;
     Color buttonColor = new Color(242, 242, 242);
 
     /**
@@ -114,7 +112,7 @@ public class Gui extends JPanel {
         textField.setFont(new Font(null, Font.PLAIN, 16));
         p2.add(textField);
 
-        //提交按钮监听
+        //提交按钮监听和显示
         JButton strbtn = new JButton("提交");
         strbtn.setFont(new Font(null, Font.PLAIN, 15));
         strbtn.setBackground(buttonColor);
@@ -124,6 +122,7 @@ public class Gui extends JPanel {
         });
         p2.add(strbtn);
 
+        //菜单栏
         jmb = new JMenuBar();
         menu1 = new JMenu("文件(F)");
         // 设置助记符
@@ -140,6 +139,7 @@ public class Gui extends JPanel {
         item5 = new JMenuItem("执行拖动");
         item6 = new JMenuItem("取消拖动");
         item7 = new JMenuItem("矩形拖动删除");
+        item8 = new JMenuItem("取消拖动删除");
 
         // 给菜单选项添加快捷方式
         item1.setMnemonic('N');
@@ -152,6 +152,7 @@ public class Gui extends JPanel {
         item3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
                 InputEvent.ALT_MASK));
 
+        //item加入到菜单中
         menu1.add(item1);
         menu1.add(item2);
         menu1.add(item3);
@@ -161,6 +162,7 @@ public class Gui extends JPanel {
         menu2.add(item6);
         menu2.addSeparator();// 添加分割线
         menu2.add(item7);
+        menu2.add(item8);
 
         // 将菜单添加到菜单条上
         jmb.add(menu1);
@@ -176,6 +178,10 @@ public class Gui extends JPanel {
         Shapes[] shapesParameter = new Shapes[20000];
         dl.setSp(shapesParameter);
 
+        //新建图片（清空画布）
+        item1.addActionListener(a -> {
+            DrawListener.clean = true;
+        });
 
         //设置保存图片按钮监听
         //图片保存可选择为JPG和PNG格式和路径
@@ -220,6 +226,7 @@ public class Gui extends JPanel {
             }
         });
 
+        //拖动参数修改
         item5.addActionListener(a -> {
             DrawListener.isDrag = true;
         });
@@ -227,12 +234,18 @@ public class Gui extends JPanel {
             DrawListener.isDrag = false;
         });
 
-        item1.addActionListener(a -> {
-            DrawListener.clean = true;
+        //矩形拖动删除画布图形
+        item7.addActionListener(a ->{
+            DrawListener.areaclean = true;
+        });
+        item8.addActionListener(a ->{
+            DrawListener.areaclean = false;
         });
     }
 
+
     public static void main(String[] args) {
+        //主函数
         Gui gui = new Gui();
     }
 }
