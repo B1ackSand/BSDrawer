@@ -2,6 +2,7 @@ package gui;
 
 
 import shape.Shapes;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -11,6 +12,7 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 import static common.Path.*;
 
 /**
@@ -26,7 +28,7 @@ public class Gui extends JPanel {
      */
     JMenuBar jmb;
     JMenu menu1, menu2, menu3;
-    JMenuItem item1, item2, item3, item4, item5, item6, item7,item8;
+    JMenuItem item1, item2, item3, item4, item5, item6, item7, item8, item9;
     Color buttonColor = new Color(242, 242, 242);
 
     /**
@@ -68,44 +70,46 @@ public class Gui extends JPanel {
         this.setBackground(Color.white);
 
         //创建图形按钮
-        JButton jb1 = new JButton("ROUNDRECT", new ImageIcon(this.getClass().getClassLoader().getResource(ROUNDRECT)));
-        JButton jb2 = new JButton("NORMALRECT", new ImageIcon(this.getClass().getClassLoader().getResource(NORMALRECT)));
-        JButton jb3 = new JButton("DIAMOND", new ImageIcon(this.getClass().getClassLoader().getResource(DIAMOND)));
-        JButton jb4 = new JButton("PARALLELOGRAM", new ImageIcon(this.getClass().getClassLoader().getResource(PARALLELOGRAM)));
-        JButton jb5 = new JButton("LINE", new ImageIcon(this.getClass().getClassLoader().getResource(LINE)));
-        JButton jb6 = new JButton("CONNECTOR", new ImageIcon(this.getClass().getClassLoader().getResource(CONNECTOR)));
-        JButton jb7 = new JButton("BROKENLINE", new ImageIcon(this.getClass().getClassLoader().getResource(BROKENLINE)));
-        JButton jb8 = new JButton("SETSTR", new ImageIcon(this.getClass().getClassLoader().getResource(SETSTR)));
+        {
+            JButton jb1 = new JButton("ROUNDRECT", new ImageIcon(this.getClass().getClassLoader().getResource(ROUNDRECT)));
+            JButton jb2 = new JButton("NORMALRECT", new ImageIcon(this.getClass().getClassLoader().getResource(NORMALRECT)));
+            JButton jb3 = new JButton("DIAMOND", new ImageIcon(this.getClass().getClassLoader().getResource(DIAMOND)));
+            JButton jb4 = new JButton("PARALLELOGRAM", new ImageIcon(this.getClass().getClassLoader().getResource(PARALLELOGRAM)));
+            JButton jb5 = new JButton("LINE", new ImageIcon(this.getClass().getClassLoader().getResource(LINE)));
+            JButton jb6 = new JButton("CONNECTOR", new ImageIcon(this.getClass().getClassLoader().getResource(CONNECTOR)));
+            JButton jb7 = new JButton("BROKENLINE", new ImageIcon(this.getClass().getClassLoader().getResource(BROKENLINE)));
+            JButton jb8 = new JButton("SETSTR", new ImageIcon(this.getClass().getClassLoader().getResource(SETSTR)));
 
-        //添加图片按钮
-        p1.add(jb1);
-        p1.add(jb2);
-        p1.add(jb3);
-        p1.add(jb4);
-        p1.add(jb5);
-        p1.add(jb6);
-        p1.add(jb7);
-        p1.add(jb8);
+            //添加图片按钮
+            p1.add(jb1);
+            p1.add(jb2);
+            p1.add(jb3);
+            p1.add(jb4);
+            p1.add(jb5);
+            p1.add(jb6);
+            p1.add(jb7);
+            p1.add(jb8);
 
-        //设置按钮背景颜色
-        jb1.setBackground(buttonColor);
-        jb2.setBackground(buttonColor);
-        jb3.setBackground(buttonColor);
-        jb4.setBackground(buttonColor);
-        jb5.setBackground(buttonColor);
-        jb6.setBackground(buttonColor);
-        jb7.setBackground(buttonColor);
-        jb8.setBackground(buttonColor);
+            //设置按钮背景颜色
+            jb1.setBackground(buttonColor);
+            jb2.setBackground(buttonColor);
+            jb3.setBackground(buttonColor);
+            jb4.setBackground(buttonColor);
+            jb5.setBackground(buttonColor);
+            jb6.setBackground(buttonColor);
+            jb7.setBackground(buttonColor);
+            jb8.setBackground(buttonColor);
 
-        //按钮设置监听器
-        jb1.addActionListener(dl);
-        jb2.addActionListener(dl);
-        jb3.addActionListener(dl);
-        jb4.addActionListener(dl);
-        jb5.addActionListener(dl);
-        jb6.addActionListener(dl);
-        jb7.addActionListener(dl);
-        jb8.addActionListener(dl);
+            //按钮设置监听器
+            jb1.addActionListener(dl);
+            jb2.addActionListener(dl);
+            jb3.addActionListener(dl);
+            jb4.addActionListener(dl);
+            jb5.addActionListener(dl);
+            jb6.addActionListener(dl);
+            jb7.addActionListener(dl);
+            jb8.addActionListener(dl);
+        }
 
         //创建文本框和提交按钮
         final JTextField textField = new JTextField("请修改内容", 8);
@@ -132,42 +136,68 @@ public class Gui extends JPanel {
         menu3 = new JMenu("帮助(H)");
         menu3.setMnemonic('H');
 
-        item1 = new JMenuItem("新建(N)");
-        item2 = new JMenuItem("打开(O)");
-        item3 = new JMenuItem("保存图片(S)");
-        item4 = new JMenuItem("退出(X)");
-        item5 = new JMenuItem("执行拖动");
-        item6 = new JMenuItem("取消拖动");
-        item7 = new JMenuItem("矩形拖动删除");
-        item8 = new JMenuItem("取消拖动删除");
+        //设置各item文本内容
+        {
+            item1 = new JMenuItem("新建(N)");
+            item2 = new JMenuItem("打开(O)");
+            item3 = new JMenuItem("保存图片(S)");
+            item4 = new JMenuItem("退出(X)");
+            item5 = new JMenuItem("执行拖动(U)");
+            item6 = new JMenuItem("取消拖动(I)");
+            item7 = new JMenuItem("矩形拖动删除(J)");
+            item8 = new JMenuItem("取消拖动删除(K)");
+            item9 = new JMenuItem("关于(A)");
+        }
 
         // 给菜单选项添加快捷方式
-        item1.setMnemonic('N');
-        item1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,
-                InputEvent.ALT_MASK));
-        item2.setMnemonic('O');
-        item2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
-                InputEvent.ALT_MASK));
-        item3.setMnemonic('S');
-        item3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
-                InputEvent.ALT_MASK));
+        {
+            item1.setMnemonic('N');
+            item1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,
+                    InputEvent.ALT_MASK));
+            item2.setMnemonic('O');
+            item2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
+                    InputEvent.ALT_MASK));
+            item3.setMnemonic('S');
+            item3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
+                    InputEvent.ALT_MASK));
+            item4.setMnemonic('X');
+            item4.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X,
+                    InputEvent.ALT_MASK));
+            item5.setMnemonic('U');
+            item5.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U,
+                    InputEvent.ALT_MASK));
+            item6.setMnemonic('I');
+            item6.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I,
+                    InputEvent.ALT_MASK));
+            item7.setMnemonic('J');
+            item7.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J,
+                    InputEvent.ALT_MASK));
+            item8.setMnemonic('K');
+            item8.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_K,
+                    InputEvent.ALT_MASK));
+        }
 
         //item加入到菜单中
-        menu1.add(item1);
-        menu1.add(item2);
-        menu1.add(item3);
-        menu1.addSeparator();// 添加分割线
-        menu1.add(item4);
-        menu2.add(item5);
-        menu2.add(item6);
-        menu2.addSeparator();// 添加分割线
-        menu2.add(item7);
-        menu2.add(item8);
+        {
+            menu1.add(item1);
+            menu1.add(item2);
+            menu1.add(item3);
+            menu1.addSeparator();// 添加分割线
+            menu1.add(item4);
+            menu2.add(item5);
+            menu2.add(item6);
+            menu2.addSeparator();// 添加分割线
+            menu2.add(item7);
+            menu2.add(item8);
+            menu3.add(item9);
+        }
 
         // 将菜单添加到菜单条上
-        jmb.add(menu1);
-        jmb.add(menu2);
-        jmb.add(menu3);
+        {
+            jmb.add(menu1);
+            jmb.add(menu2);
+            jmb.add(menu3);
+        }
 
         // 将菜单添加到窗体上并使窗口可见
         jf.setJMenuBar(jmb);
@@ -226,6 +256,11 @@ public class Gui extends JPanel {
             }
         });
 
+        //退出程序
+        item4.addActionListener(a -> {
+            System.exit(0);
+        });
+
         //拖动参数修改
         item5.addActionListener(a -> {
             DrawListener.isDrag = true;
@@ -235,10 +270,10 @@ public class Gui extends JPanel {
         });
 
         //矩形拖动删除画布图形
-        item7.addActionListener(a ->{
+        item7.addActionListener(a -> {
             DrawListener.areaclean = true;
         });
-        item8.addActionListener(a ->{
+        item8.addActionListener(a -> {
             DrawListener.areaclean = false;
         });
     }
