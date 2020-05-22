@@ -282,5 +282,5 @@ public class Gui extends JPanel {
     public static void main(String[] args) {
         //主函数
         Gui gui = new Gui();
-    }
+    } 
 }
